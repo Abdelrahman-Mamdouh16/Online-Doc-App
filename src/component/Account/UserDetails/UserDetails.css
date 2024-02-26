@@ -1,0 +1,11 @@
+/* @media only screen and (min-width: 1200px) {
+    .UserDetails .container-md {
+        width: 50%;
+    }
+} */
+.UserDetailsForm {
+    margin-top:25px;
+    margin-bottom:50px;
+    border: 1px solid white;
+    border-radius: 10px;
+}

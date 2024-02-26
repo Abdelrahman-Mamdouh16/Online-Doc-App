@@ -1,0 +1,24 @@
+.bgColorLite{
+  background-color: #e2e6ea;
+}
+.topTextBgColor{
+  background-color: #0070cd;
+}
+.textMain{
+  color: rgb(102, 102, 102)
+}
+.textMain_Blue{
+  color: #0070cd;
+}
+.anchor {
+  text-decoration: none;
+}
+.anchor:hover {
+  text-decoration: underline;
+}
+.form-floating label {
+  padding: 10px 0.75rem;
+}
+.TopText{
+  border-radius:10px 10px 0 0;
+}

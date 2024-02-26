@@ -1,0 +1,233 @@
+.MainSlide {
+  display: block;
+  width: 100%;
+  height: 685px;
+  direction: ltr;
+  background-image: url('./../../public/homecover (1).webp');
+  animation: change-image 10s infinite linear;
+  transition: 50s change-image;
+  background-position: center;
+  background-size: cover;
+  background-attachment: local;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+@keyframes change-image {
+  0% {
+    background-image: url('./../../public/homecover (1).webp');
+  }
+
+  25% {
+    background-image: url('./../../public/homecover (2).webp');
+  }
+
+  50% {
+    background-image: url('./../../public/homecover (3).webp');
+  }
+
+  75% {
+    background-image: url('./../../public/homecover (4).webp');
+  }
+
+  100% {
+    background-image: url('./../../public/homecover (1).webp');
+  }
+}
+
+
+
+
+.overLay {
+  display: block;
+  background: -webkit-linear-gradient(top, rgb(255, 255, 255) 0px, rgba(255, 255, 255, 0.01) 38%, transparent 100%);
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+.text {
+  position: sticky;
+  z-index: 3;
+  padding-top: 50px;
+}
+.searchBtn{
+  border-radius:0px 10px 10px 0  !important;
+}
+
+.content {
+  margin-top: 180px;
+  position: sticky;
+  /* background-color: aqua; */
+  z-index: 3;
+}
+
+.MainSlide .text h1 {
+  font-size: 37.8px;
+  color: #6f7072;
+  line-height: 1.1;
+  font-weight: 600;
+  margin: 0px 0px 11px;
+}
+
+.MainSlide .text h2 {
+  color: #6f7072;
+  font-weight: 400;
+  font-size: 25.2px;
+  font-weight: normal;
+  margin: 0px;
+}
+
+.MainSlide .text .phoneIcon {
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  color: rgb(239, 15, 15);
+  font-size: 18px;
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: middle;
+  transform: unset;
+}
+
+.content .searchBar {
+  background-color: white;
+  border-radius: 22px;
+  box-shadow: rgba(0, 0, 0, 0.29) 0px 6px 18px 0px;
+  ;
+}
+
+@media only screen and (min-width: 768px) {
+  .content .searchBar {
+    border: 1px solid rgb(224, 224, 224);
+  }
+}
+
+.content .searchBar .topText .left {
+  color: #0070cd;
+  cursor: pointer;
+}
+
+.activeLeft::after {
+  content: '';
+  position: absolute;
+  top: 49.5%;
+  left: 0%;
+  width: 50%;
+  height: 1px;
+  background-color: #0070cd;
+  cursor: pointer;
+}
+
+.activeRight::after {
+  content: '';
+  position: absolute;
+  top: 49.5%;
+  right: 0%;
+  width: 50%;
+  height: 1px;
+  background-color: #0070cd;
+}
+
+.content .searchBar .topText .right {
+  color: #0070cd;
+}
+
+.content .searchBar .topText .left .top {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 0;
+}
+
+.content .searchBar .topText .left .bottom {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 0;
+}
+
+.content .searchBar .topText .right .top {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 0;
+}
+
+
+.content .searchBar .topText .right .bottom {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 0;
+}
+
+.form-select:focus {
+  border-color: 0;
+  outline: 0;
+  box-shadow: none;
+}
+
+.content .searchBar .searchInputs .left .form-select-lg,
+.content .searchBar .searchInputs .right .form-select-lg {
+  border-radius: 0 !important;
+  color: #0070cd !important;
+}
+
+.form-select:focus {
+  border-color: #dee2e6 !important;
+  outline: 0;
+  box-shadow: none !important;
+}
+
+.btn-group-lg>.btn,
+.btn-lg {
+  --bs-btn-padding-x: 0px !important;
+}
+
+input:focus-visible {
+  outline: #dee2e6 !important;
+  border-color: 0;
+  box-shadow: none !important;
+}
+
+.placeholders::placeholder {
+  color: #0070cd;
+}
+@media only screen and (max-width: 1000px) {
+  .MainSlide{
+    height: 500px;
+  }
+  .content {
+    margin-top: 50px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .MainSlide{
+    height:calc(100vh - 80px);
+  }
+  .MainSlide .text h1 {
+    font-size: 30px;
+  }
+
+  .MainSlide .text h2 {
+    font-size: 20px;
+  }
+
+  .content {
+    margin-top: 30px;
+  }
+
+  .activeLeft::after {
+    top: 15%;
+    height: 1px;
+    width: 100%;
+  }
+  .activeRight::after {
+    top: 50%;
+    width: 100%;
+  }
+  .searchBtn{
+    border-radius: 0 0 10px 10px !important;
+  }
+}

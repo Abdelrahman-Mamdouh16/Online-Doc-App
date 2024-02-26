@@ -1,0 +1,15 @@
+.navbar-toggler {
+    border: 0px none !important;
+}
+
+.navbar-toggler:focus-visible {
+    border: 0px none !important;
+    outline: none !important;
+}
+
+.navbar-toggler:focus {
+    text-decoration: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+
+}

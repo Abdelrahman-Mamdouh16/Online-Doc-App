@@ -1,0 +1,61 @@
+.north {
+    border-radius: 10px;
+}
+
+.NewServices .northImg .img img {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+}
+
+.medicalQuestion {
+    background-color: white;
+    border-radius: 10px;
+}
+
+.Pharmacy {
+    background-image: url('./../../public/epharmacy-solution-banner.jpg');
+    text-decoration: none;
+    background-size: cover;
+    background-position: 100% 0%;
+    display: block;
+    border-radius: 8px;
+    padding: 16px;
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+.topOffers {
+    background-color: #FFF;
+}
+
+.slick-prev {
+    width: 30px !important;
+    height: 50px !important;
+    transform: translate(-20%, -50%) !important;
+}
+
+.slick-next {
+    width: 30px !important;
+    height: 50px !important;
+    transform: translate(20%, -50%) !important;
+}
+
+.slick-prev::before,
+.slick-next::before {
+    color: #0271cd !important;
+    font-size: 25px !important;
+}
+
+@media only screen and (min-width: 1024px) {
+    .Pharmacy {
+        padding: 35px 40px;
+        margin-bottom: 30px;
+    }
+}
+@media only screen and (max-width: 580px) {
+    .slick-prev ,.slick-next{
+        display: none !important;
+    }
+}

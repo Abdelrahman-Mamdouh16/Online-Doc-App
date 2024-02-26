@@ -1,0 +1,12 @@
+@media only screen and (min-width: 1200px) {
+    .register .container-md {
+        width: 50%;
+    }
+}
+.registrationForm {
+    margin-top:50px;
+    margin-bottom:50px;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
