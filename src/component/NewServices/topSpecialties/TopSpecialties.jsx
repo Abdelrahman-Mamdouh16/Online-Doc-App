@@ -10,7 +10,7 @@ export default function TopSpecialties() {
 
     const topSpecialtiesFun = async () => {
         try {
-            const { data } = await axios.get('https://online-doctor-app.onrender.com/product/topSpecialties')
+            const { data } = await axios.get('https://node-js-server-onlinedoctor.vercel.app/product/topSpecialties')
             if (data) serSpecialtiesData(data.result);
             setIsErrorSpecialties(null)
         } catch (error) {
@@ -59,9 +59,9 @@ export default function TopSpecialties() {
     return (
         <section className='topSpecialties py-5'>
             <div className="container">
-                <div className='d-flex justify-content-between mb-4'>
+                <div className='d-md-flex justify-content-between mb-4'>
                     <h1 className='p-0 m-0' style={{ color: 'rgb(102, 102, 102)', fontSize: '32px', fontWeight: '700' }}>Book from top specialties</h1>
-                    <button className='btn btn-danger'>All Offers <i className="fa-solid fa-caret-right"></i></button>
+                    <button className='btn btn-danger mt-3 mt-md-0'>All Offers <i className="fa-solid fa-caret-right"></i></button>
                 </div>
                 <div className='topSpecialtiesSlider mt-2'>
                     {SpecialtiesData.length === 0 && !isErrorSpecialties ? <SpinnerGrow />

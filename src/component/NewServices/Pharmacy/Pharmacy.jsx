@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 export default function Pharmacy() {
     return (
@@ -13,20 +14,22 @@ export default function Pharmacy() {
                             <p style={{
                                 color: '#fff', margin: '4px 0px 8px',
                                 fontWeight: '400',
-                            }}>Get your medicine and all your pharmacy needs.</p>
+                            }}>Check the pharmacies near you</p>
                         </div>
                     </div>
                 </div>
                 <div className="col-md-12 d-flex justify-content-center justify-content-md-start mt-4 mt-md-3">
                     <div className="medicalQuestionButton">
-                        <button className='btn fs-5 fw-bold' style={{
+                        <Link to={'https://www.google.com/maps/search/Pharmacy'}>
+                        <button  className='btn fs-5 fw-bold' style={{
                             width: '100%',
                             backgroundColor: '#fff',
                             color: '#0070cd',
                             padding: '16px 50px',
                             fontSize: '16px',
                             fontWeight: '400',
-                        }}>Place order</button>
+                        }}>Show all Pharmacies</button>
+                        </Link>
                     </div>
                 </div>
 

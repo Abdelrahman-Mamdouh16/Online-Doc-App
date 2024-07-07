@@ -9,17 +9,19 @@ import { jwtDecode } from 'jwt-decode'
 import { useDispatch } from 'react-redux'
 import { setLoading, setIsLogin, setUserToken, setUserId } from '../../Redux/Slices/userLoginData.slice'
 
+
 export default function Login() {
     const dispatch = useDispatch()
     let [isError, setError] = useState('')
     let [isMessage, setIsMessage] = useState('')
+    const baseUrl = 'https://node-js-server-onlinedoctor.vercel.app';
 
     dispatch(setLoading(false));
     const navigate = useNavigate()
     const SubmitHandling = async (val) => {
         try {
             dispatch(setLoading(true));
-            const { data } = await axios.post('https://online-doctor-app.onrender.com/user/login', val)
+            const { data } = await axios.post(`${baseUrl}/user/login`, val)
             if (data.success === true) {
                 localStorage.setItem('token', data.result.token)
                 dispatch(setUserToken(data.result.token))
@@ -29,7 +31,7 @@ export default function Login() {
                 setIsMessage('')
                 setError('')
                 toast.success(data.message)
-                dispatch(setLoading(true)); 
+                dispatch(setLoading(true));
                 navigate('/')
                 dispatch(setLoading(false));
             }
@@ -61,7 +63,7 @@ export default function Login() {
     })
     return (
         <>
-            <div className="login bgColorLite d-flex justify-content-center align-items-center">
+            <div className="login bgColorLite d-flex justify-content-center align-items-center my-5">
                 <div className=" container-fluid container-md ">
                     <div className="loginForm bg-white">
 

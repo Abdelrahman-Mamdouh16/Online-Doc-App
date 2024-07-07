@@ -3,9 +3,10 @@ import './NewServices.css';
 import TopSpecialties from './topSpecialties/TopSpecialties.jsx';
 import TopOffers from './topOffers/TopOffers.jsx';
 import North from './north/North.jsx';
-import MedicalQuestion from './medicalQuestion/MedicalQuestion.jsx';
+// import MedicalQuestion from './medicalQuestion/MedicalQuestion.jsx';
 import Pharmacy from './Pharmacy/Pharmacy.jsx';
 import LastCard from './lastCard/LastCard.jsx';
+import Laboratory from './laboratory/Laboratory .jsx';
 export default function NewServices() {
     
     return (
@@ -15,9 +16,9 @@ export default function NewServices() {
                     New services for better healthcare
                 </h1>
                 {/* north Section */}
-                <North />
+                {/* <North /> */}
                 {/* medicalQuestion Section */}
-                <MedicalQuestion />
+                <Laboratory/>
                 {/* Pharmacy Section */}
                 <Pharmacy />
                 {/* lastCard Section */}

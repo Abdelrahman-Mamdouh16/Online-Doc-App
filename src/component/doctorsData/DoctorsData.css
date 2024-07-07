@@ -1,0 +1,38 @@
+.topSearchBanner {
+    background-image: url(../../public/search-header-background-en.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+
+}
+
+.topSearch .topSearchText h1 {
+    font-size: 19px;
+    font-weight: 700;
+    display: block;
+    color: rgb(111, 112, 114);
+    width: 60%;
+    margin-bottom: 0px !important;
+}
+
+.tsTst {
+    font-size: 16px;
+    line-height: 23px;
+    display: block;
+    letter-spacing: 0.3px;
+    color: rgb(111, 112, 114);
+    margin-top: 7px !important;
+}
+
+.eleDocName {
+    vertical-align: middle;
+    cursor: pointer;
+    color: rgb(0, 112, 205);
+}
+.styleDocCard:hover{
+    background-color: #edeff2 !important;
+}
+.styleDocDetails {
+    color: rgb(128, 129, 132);
+    font-size: 14px
+}

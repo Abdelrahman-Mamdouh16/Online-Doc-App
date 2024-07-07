@@ -15,7 +15,7 @@ export default function LayoutAccount() {
                     <div className="row">
                         <div className="col-md-4 p-0 m-0">
                             <div className="right">
-                                <div className="LayoutAccount d-flex justify-content-center justify-content-md-end  bgColorLite">
+                                <div className="LayoutAccount d-flex justify-content-center justify-content-md-center  bgColorLite">
                                     <div className="LayoutAccountForm bg-white w-75 overflow-hidden" style={{
                                         marginTop: '25px',
                                         border: '1px solid white',

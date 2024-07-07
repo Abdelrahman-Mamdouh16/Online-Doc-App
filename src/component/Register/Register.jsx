@@ -17,7 +17,7 @@ export default function Register() {
         console.log(values);
         try {
             dispatch(setLoading(true));
-            const { data } = await axios.post('https://online-doctor-app.onrender.com/user/register', values);
+            const { data } = await axios.post('https://node-js-server-onlinedoctor.vercel.app/user/register', values);
             if (data.success === true) {
                 dispatch(setLoading(true));
                 toast.success('Registration Successfully')
@@ -41,7 +41,7 @@ export default function Register() {
         }
     }
     let validationSchema = yup.object({
-        name: yup.string().max(15, 'Must be 15 characters or less').required('UserName is Required'),
+        name: yup.string().max(20, 'Must be 20 characters or less').required('UserName is Required'),
         email: yup.string().email('Invalid email address').required('Email Required'),
         phone: yup.string().required('Phone is required').matches(/^(002)?(01[0-25][0-9]{8})$/, 'Phone not match'),
         password: yup.string().required('Password is required').matches(/^\b\d{6}\b$/, 'Password not match 6 number at least'),

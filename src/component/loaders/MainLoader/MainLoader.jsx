@@ -5,9 +5,9 @@ export default function MainLoader({ children }) {
     const { loading } = useSelector((state) => state.userLoginData)
     if (loading) {
         return <>
-            <div class="d-flex justify-content-center  align-items-center spinner">
-                <div class="spinner-border" role="status">
-                    <span class="visually-hidden">Loading...</span>
+            <div className="d-flex justify-content-center  align-items-center spinner">
+                <div className="spinner-border" role="status">
+                    <span className="visually-hidden">Loading...</span>
                 </div>
             </div>
         </>

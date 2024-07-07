@@ -1,5 +1,5 @@
 import React from 'react'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { RouterProvider, createBrowserRouter, useLocation } from 'react-router-dom'
 import Layout from './component/layout/Layout'
 import Login from './component/Login/Login'
 import Register from './component/Register/Register'
@@ -13,21 +13,30 @@ import LayoutAccount from './component/Account/LayoutAccount.jsx'
 import './App.css'
 import ChangePassword from './component/Account/changePassword/ChangePassword.jsx'
 import MainLoader from './component/loaders/MainLoader/MainLoader.jsx'
+import DoctorsData from './component/doctorsData/DoctorsData.jsx'
+import CreateReservation from './component/doctorsData/createReservation/CreateReservation.jsx'
+import ReservationThankYou from './component/doctorsData/reservationThankYou/ReservationThankYou';
 
 export default function App() {
+  
 
   const router = createBrowserRouter([
     {
       path: '/', element: <MainLoader><Layout /></MainLoader>, children: [
-        { index: true, element: <Home /> },  
+        { index: true, element: <Home /> },
         { path: '/login', element: <Login /> },
         { path: '/register', element: <Register /> },
         { path: '/logout', element: <Protect><LogOut /></Protect> },
-        { path: '/Account', element: <Protect><LayoutAccount /></Protect>,children:[
-          {index:true ,path:'/Account/userDetails', element: <Protect><UserDetails/></Protect>},
-          {path:'/Account/newService', element: <Protect><ChangePassword/></Protect>},
-        ] },
+        {
+          path: '/Account', element: <Protect><LayoutAccount /></Protect>, children: [
+            { index: true, path: '/Account/userDetails', element: <Protect><UserDetails /></Protect> },
+            { path: '/Account/newService', element: <Protect><ChangePassword /></Protect> },
+          ]
+        },
         { path: '/cart', element: <Protect><Cart /></Protect> },
+        { path: '/doctors/DoctorsData/:specialization/:city/:area?/:docName?', element: <Protect><DoctorsData /></Protect> },
+        { path: '/Reservation/create', element: <Protect><CreateReservation /></Protect> },
+        { path: '/Reservation/Thank-You', element: <Protect><ReservationThankYou /></Protect> },
       ]
     }
   ])

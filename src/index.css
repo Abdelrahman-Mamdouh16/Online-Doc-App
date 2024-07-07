@@ -8,7 +8,7 @@
   color: rgb(102, 102, 102)
 }
 .textMain_Blue{
-  color: #0070cd;
+  color: #0070cd !important;
 }
 .anchor {
   text-decoration: none;

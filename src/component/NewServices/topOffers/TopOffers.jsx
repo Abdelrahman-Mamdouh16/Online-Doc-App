@@ -9,7 +9,7 @@ export default function TopOffers() {
 
     const topOffersFun = async () => {
         try {
-            const { data } = await axios.get('https://online-doctor-app.onrender.com/product/topOffers')
+            const { data } = await axios.get('https://node-js-server-onlinedoctor.vercel.app/product/topOffers')
             if (data) serOffersData(data.result);
             setIsErrorOffers(null)
         } catch (error) {
@@ -59,9 +59,9 @@ export default function TopOffers() {
     return (
         <section className='topOffers py-5'>
             <div className="container">
-                <div className='d-flex justify-content-between mb-4'>
+                <div className='d-md-flex justify-content-between mb-4'>
                     <h1 className='p-0 m-0' style={{ color: 'rgb(102, 102, 102)', fontSize: '32px', fontWeight: '700' }}>Choose from top offers</h1>
-                    <button className='btn btn-danger'>All Offers <i className="fa-solid fa-caret-right"></i></button>
+                    <button className='btn btn-danger mt-3 mt-md-0'>All Offers <i className="fa-solid fa-caret-right"></i></button>
                 </div>
                 <div className='topOffersSlider mt-2'>
                     {OffersData.length === 0 && !isErrorOffers ? <SpinnerGrow />

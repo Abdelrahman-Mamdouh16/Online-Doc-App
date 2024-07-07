@@ -17,7 +17,7 @@ export default function ChangePassword() {
     const SubmitHandling = async (values) => {
         console.log(values);
         try {
-            const { data } = await axios.patch(`http://localhost:8080/user/userAccount/UpdatePass/${userId}`, values);
+            const { data } = await axios.patch(`https://online-doctor-app.onrender.com/user/userAccount/UpdatePass/${userId}`, values);
             console.log(data);
             if (data.success === true) {
                 toast.success('Registration Successfully')
@@ -51,7 +51,7 @@ export default function ChangePassword() {
     })
     return (
         <>
-            <div className="ChangePassword d-flex bgColorLite "style={{marginTop:'25px'}} >
+            <div className="ChangePassword d-flex bgColorLite my-4" >
                 <div className="container-fluid">
                     <div className="ChangePasswordForm bg-white rounded-3 ">
                         <div className="TopText topTextBgColor py-2">

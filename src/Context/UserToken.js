@@ -1,14 +1,16 @@
 import { jwtDecode } from "jwt-decode";
 import { createContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { setIsLogin, setUserId, setUserToken } from "../Redux/Slices/userLoginData.slice";
 
 export const UserToken = createContext(null)
 
 export default function UserTokenProvider({ children }) {
+    const baseUrl="https://node-js-server-onlinedoctor.vercel.app";
     const { userToken, userId } = useSelector((state) => state.userLoginData)
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
     const localStorages = () => {
         if (!localStorage.getItem('token')) {
             dispatch(setIsLogin(false))
@@ -23,12 +25,13 @@ export default function UserTokenProvider({ children }) {
         }
     }
     useEffect(() => {
+        
         localStorages()
         //eslint-disable-next-line
     }, [userId, userToken])
 
 
-    return <UserToken.Provider value={{}}>
+    return <UserToken.Provider value={baseUrl}>
         {children}
     </UserToken.Provider>
 }
