@@ -1,21 +1,24 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Loading from './../../loaders/SpinnerLoading/SpinnerLoading.jsx';
 import toast from 'react-hot-toast';
 
 export default function GetAppointment() {
   const { id } = useParams();
-  const [reservationData, setReservationData] = useState()
+  const [reservationData, setReservationData] = useState();
+  const navigate=useNavigate()
   const GetAppointment = async () => {
     try {
       const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/Reservation/getAppointment/${id}`)
       console.log(data);
       if (data.success === true) {
-        setReservationData(data.result)
+        setReservationData(data.result);
+        navigate('/Account/myAppointment')
       }
     } catch (error) {
       console.log(error.message);
+
     }
   }
   const deleteReservation = async (id) => {
@@ -24,6 +27,10 @@ export default function GetAppointment() {
       console.log(data);
       if (data.success === true) {
         toast.success(data.message)
+        GetAppointment();
+      }
+      if (data.success === false) {
+        toast.error(data.message)
         GetAppointment();
       }
     } catch (error) {
@@ -55,7 +62,7 @@ export default function GetAppointment() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className={reservationData.reservation.status == `deleted` ? `table-danger` : ''}>
+                  <tr className={reservationData.reservation.status === `deleted` ? `table-danger` : ''}>
                     <td className='align-middle'>{reservationData?.doctorData?.name}</td>
                     <td className='d-none d-md-table-cell'>{reservationData?.doctorData?.area} , {reservationData?.doctorData?.city}  </td>
                     <td className='col-sm-2 d-none d-md-table-cell'>
@@ -76,7 +83,7 @@ export default function GetAppointment() {
             </div>
             <div className='d-md-none d-block '>
               
-                <div  className={reservationData.reservation.status == `deleted` ? `bg-danger-subtle px-3` : 'px-3'}>
+                <div  className={reservationData.reservation.status === `deleted` ? `bg-danger-subtle px-3` : 'px-3'}>
                   {/* <h5 className='m-0 text-center mt-3'>#{index + 1}</h5> */}
                   <div className=' p-2'>
                     <h6 className='m-0 me-2'>Doctor Name : </h6>
@@ -94,7 +101,7 @@ export default function GetAppointment() {
                     <h6 className='m-0 me-2'>Status : </h6>
                     <p className='m-0 text-capitalize'>{reservationData?.reservation?.status}</p>
                   </div>
-                  {reservationData.reservation.status == 'deleted' ? "" :
+                  {reservationData.reservation.status === 'deleted' ? "" :
                     <div className='d-flex align-items-center p-2'>
                       <h6 className='m-0 me-2'>Cancel : </h6>
 
