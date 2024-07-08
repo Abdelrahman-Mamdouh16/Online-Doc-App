@@ -78,21 +78,21 @@ export default function GetAppointment() {
               
                 <div  className={reservationData.reservation.status == `deleted` ? `bg-danger-subtle px-3` : 'px-3'}>
                   {/* <h5 className='m-0 text-center mt-3'>#{index + 1}</h5> */}
-                  <div className='d-flex align-items-center p-2'>
+                  <div className=' p-2'>
                     <h6 className='m-0 me-2'>Doctor Name : </h6>
-                    <p className='m-0'>{reservationData?.doctorData?.name}</p>
+                    <p className='m-0 mt-2'>{reservationData?.doctorData?.name}</p>
                   </div>
-                  <div className='d-flex align-items-center p-2'>
+                  <div className=' p-2'>
                     <h6 className='m-0 me-2'>Where : </h6>
-                    <p className='m-0'>{reservationData?.doctorData?.area} , {reservationData?.doctorData?.city}</p>
+                    <p className='m-0 mt-2'>{reservationData?.doctorData?.area} , {reservationData?.doctorData?.city}</p>
                   </div>
-                  <div className='d-flex align-items-center p-2'>
+                  <div className=' p-2'>
                     <h6 className='m-0 me-2'>Reservation Date : </h6>
-                    <p className='m-0'>{reservationData?.reservation?.date}{' , '} {reservationData?.reservation?.timeStart} {' , '}  {reservationData?.reservation?.timeEnd}</p>
+                    <p className='m-0 mt-2'>{reservationData?.reservation?.date}{' , '} {reservationData?.reservation?.timeStart} {' , '}  {reservationData?.reservation?.timeEnd}</p>
                   </div>
                   <div className='d-flex align-items-center p-2'>
                     <h6 className='m-0 me-2'>Status : </h6>
-                    <p className='m-0'>{reservationData?.reservation?.status}</p>
+                    <p className='m-0 text-capitalize'>{reservationData?.reservation?.status}</p>
                   </div>
                   {reservationData.reservation.status == 'deleted' ? "" :
                     <div className='d-flex align-items-center p-2'>
