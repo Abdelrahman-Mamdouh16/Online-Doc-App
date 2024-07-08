@@ -14,6 +14,10 @@ export default function GetAppointment() {
       console.log(data);
       if (data.success === true) {
         setReservationData(data.result);
+        // navigate('/Account/myAppointment')
+      }
+      if (data.success === false) {
+        toast.error(data.message)
         navigate('/Account/myAppointment')
       }
     } catch (error) {
