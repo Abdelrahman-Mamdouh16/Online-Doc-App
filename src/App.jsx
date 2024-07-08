@@ -18,6 +18,7 @@ import CreateReservation from './component/doctorsData/createReservation/CreateR
 import ReservationThankYou from './component/doctorsData/reservationThankYou/ReservationThankYou';
 import MyAppointment from './component/Account/myAppointment/MyAppointment.jsx'
 import GetAppointment from './component/Account/getAppoinment/GetAppointment.jsx'
+import NotFound from './component/notFound/NotFound.jsx'
 
 export default function App() {
   
@@ -41,6 +42,8 @@ export default function App() {
         { path: '/doctors/DoctorsData/:specialization/:city/:area?/:docName?', element: <Protect><DoctorsData /></Protect> },
         { path: '/Reservation/create', element: <Protect><CreateReservation /></Protect> },
         { path: '/Reservation/Thank-You', element: <Protect><ReservationThankYou /></Protect> },
+        { path: '*', element: <NotFound/> },
+
       ]
     }
   ])
