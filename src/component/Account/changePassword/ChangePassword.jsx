@@ -51,9 +51,9 @@ export default function ChangePassword() {
     })
     return (
         <>
-            <div className="ChangePassword d-flex bgColorLite my-4" >
-                <div className="container-fluid">
-                    <div className="ChangePasswordForm bg-white rounded-3 ">
+            <div className="ChangePassword d-flex bgColorLite my-4 " >
+                {/* <div className="container"> */}
+                    <div className="ChangePasswordForm bg-white rounded-3 w-100">
                         <div className="TopText topTextBgColor py-2">
                             <p className='text-center p-0 m-0 text-white'>Register Now</p>
                         </div>
@@ -81,7 +81,7 @@ export default function ChangePassword() {
                             </div>
                         </form>
                     </div>
-                </div>
+                {/* </div> */}
             </div>
         </>
     )

@@ -7,9 +7,9 @@ export default function ReservationThankYou() {
       <div className='ReservationThankYou text-center my-5'>
         <div className="container w-100 h-100">
           <div className="row justify-content-center">
-            <div className="col-md-12">
+            <div className="col-lg-6">
               <div className="img">
-                <img src={require('../../../public/thankyou-banner.jfif')} className='rounded-3' alt="" />
+                <img src={require('../../../public/thankyou-banner.jfif')} className='rounded-3 w-100' alt="" />
               </div>
             </div>
 

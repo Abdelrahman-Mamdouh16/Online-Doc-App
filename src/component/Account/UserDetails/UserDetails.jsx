@@ -49,7 +49,6 @@ export default function UserDetails() {
 
     const today = new Date();
     const currentYear = today.getFullYear();
-    // console.log(currentYear);
 
     const value = {
         doctorId: doctorData._id,
@@ -59,7 +58,6 @@ export default function UserDetails() {
         date: doctorDay.replace(/^\w+\s+/g, `${currentYear}/`),
         status: 'pending',
     }
-    // console.log(value);
     const checkReservation = async () => {
         try {
             const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/Reservation/checkReservation`, value)
@@ -128,7 +126,7 @@ export default function UserDetails() {
                                         <label htmlFor="floatingInputHight" className='ms-2'>Your Hight<span className="text-danger">*</span></label>
 
                                     </div>
-                                    <div className="col-md-6 form-floating">
+                                    <div className="col-md-6 form-floating mt-3 mt-md-0">
                                         <input type="number" name="weight" maxLength={3} className="form-control " id="floatingInputWeight" placeholder="20" value={patientData.weight} onChange={() => patientData.weight} />
                                         <label htmlFor="floatingInputWeight" className='ms-2'>Your Weight<span className="text-danger">*</span></label>
 

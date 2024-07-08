@@ -21,14 +21,6 @@ export default function Navbar() {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            {/* <li className="nav-item">
-                                <Link className="nav-link text-white" aria-current="page" href="#">Home</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link text-white" to={'/cart'}>Cart</Link>
-                            </li> */}
-                        </ul>
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center d-flex">
                             {!isLogin ?
                                 <>
@@ -53,14 +45,14 @@ export default function Navbar() {
                                                 Contact Us
                                             </Link>
                                         </li>
-                                        <span className='text-white d-none d-lg-block'>|</span>
+                                        {/* <span className='text-white d-none d-lg-block'>|</span>
                                         <span className='text-white d-block d-lg-none mb-2'>____________</span>
 
                                         <li className="nav-item">
                                             <Link className="nav-link text-white py-0 " to={""} onClick={() => Dispatch(developerModeFun())}>
                                                 عربي
                                             </Link>
-                                        </li>
+                                        </li> */}
                                         <span className='text-white d-none d-lg-block'>|</span>
                                         <span className='text-white d-block d-lg-none mb-2'>____________</span>
 
