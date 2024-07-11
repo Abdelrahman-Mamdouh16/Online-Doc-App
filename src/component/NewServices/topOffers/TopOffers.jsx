@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick'
 import SpinnerGrow from '../../loaders/spinnerGrow/SpinnerGrow'
+import toast from 'react-hot-toast'
 
 export default function TopOffers() {
     const [OffersData, serOffersData] = useState([])
@@ -20,7 +21,9 @@ export default function TopOffers() {
     useEffect(() => {
         topOffersFun();
     }, [])
-
+    const offersNotAvailable=() => {
+        toast.error('This offer is not available now')
+    }
 
     var settings = {
         dots: false,
@@ -61,18 +64,18 @@ export default function TopOffers() {
             <div className="container">
                 <div className='d-md-flex justify-content-between mb-4'>
                     <h1 className='p-0 m-0' style={{ color: 'rgb(102, 102, 102)', fontSize: '32px', fontWeight: '700' }}>Choose from top offers</h1>
-                    <button className='btn btn-danger mt-3 mt-md-0'>All Offers <i className="fa-solid fa-caret-right"></i></button>
+                    <button onClick={()=>offersNotAvailable()} className='btn btn-danger mt-3 mt-md-0'>All Offers <i className="fa-solid fa-caret-right"></i></button>
                 </div>
                 <div className='topOffersSlider mt-2'>
                     {OffersData.length === 0 && !isErrorOffers ? <SpinnerGrow />
                         : <>
                             {isErrorOffers ? <h3 className='text-center p-0 m-0'>{isErrorOffers}...!</h3> : <>
-                                <Slider {...settings} key={''}>
-                                    {OffersData?.map((ele, index) => <div key={ele._id} className='px-2'>
-                                        <div className="topOffersImg" key={ele._id}>
+                                <Slider {...settings}>
+                                    {OffersData?.map((ele, index) => <div key={ele._id} className='px-2' onClick={()=>offersNotAvailable()}>
+                                        <div className="topOffersImg" key={ele._id} style={{cursor:'pointer'}}>
                                             <img src={ele.img} className='w-100 rounded-4' alt="" />
                                         </div>
-                                        <div className='topOffersText'>
+                                        <div className='topOffersText' style={{cursor:'pointer'}}>
                                             <h5 className='mt-2' style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', backgroundColor: 'white', fontSize: '16px', margin: '0px', color: 'rgb(102, 102, 102)', fontWeight: '600' }}>
                                                 {ele.name}
                                             </h5>

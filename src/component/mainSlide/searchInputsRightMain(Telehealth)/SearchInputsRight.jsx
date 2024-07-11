@@ -1,23 +1,14 @@
 import { useFormik } from 'formik';
 import React from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 
 export default function SearchInputsRight() {
     const navigate = useNavigate()
-
-    function searchRightHandling(value) {
+    const { pathname } = useLocation()
+    function searchRightHandling (value) {
         try {
-            var path = `/doctors/DoctorsData/${value.ChooseSpecialty}/${value.ChooseCity}`;
-            if (value.ChooseArea) {
-                path += `/${value.ChooseArea}`;
-            };
-            if (value.DoctorName) {
-                path += `/${value.DoctorName}`;
-            }
-            toast.error('this feature not available now')
-
+            var path = `/doctors/DoctorsDataOnTelehealth/${value.ChooseSpecialty}/${value.ChooseCity}`;
             navigate(path)
         } catch (error) {
             console.log(error);
@@ -32,12 +23,12 @@ export default function SearchInputsRight() {
     })
 
     return (
-        <form className="right pb-3 d-none " id='searchInputsRight' onSubmit={formikRight.handleSubmit}>
+        <form className={`right pb-3 ${pathname === `/` ? 'd-none' : 'd-block'} `} id='searchInputsRight' onSubmit={formikRight.handleSubmit} >
             <div className="row justify-content-center mx-0">
                 <div className="col-md-3 p-0 ">
                     <div>
                         <select className="form-select form-select-lg rounded-0 rounded-start-1  position-relative textMain_Blue" aria-label="Default select example text-white" name='ChooseSpecialty' defaultValue={formikRight.values.ChooseSpecialty} onChange={formikRight.handleChange} onBlur={formikRight.handleBlur} style={{ textOverflow: 'ellipsis' }}>
-                        <option defaultValue={null} hidden={true} >
+                            <option defaultValue={null} hidden={true} >
                                 Choose specialty
                             </option>
                             <option value="all-specialties">All-Specialty</option>
@@ -57,6 +48,6 @@ export default function SearchInputsRight() {
                     </button>
                 </div>
             </div>
-        </form>
+        </form >
     )
 }

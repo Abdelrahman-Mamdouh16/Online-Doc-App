@@ -5,7 +5,7 @@ import './UserDetails.css'
 import { toast } from 'react-hot-toast';
 import Loading from './../../loaders/SpinnerLoading/SpinnerLoading.jsx';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { setLoading } from '../../../Redux/Slices/userLoginData.slice.js';
+import { setIsLogin, setLoading } from '../../../Redux/Slices/userLoginData.slice.js';
 
 export default function UserDetails() {
     const [patientData, setPatientData] = useState('');
@@ -30,8 +30,10 @@ export default function UserDetails() {
                 setPatientData(data.result);
             }
             if (data.success === false) {
-                // dispatch(setLoading(true));
                 toast.error(data.message.split(" ").slice(0, 2).join(" "));
+                localStorage.removeItem('token')
+                dispatch(setIsLogin(false))
+                navigate('/login')
             }
         } catch (error) {
             // dispatch(setLoading(true));
@@ -100,34 +102,36 @@ export default function UserDetails() {
 
                     <div className="UserDetailsForm bg-white w-100">
                         <div className="TopText topTextBgColor py-2">
-                            <p className='text-center p-0 m-0 text-white'>{pathName === '/Reservation/create' ? 'Enter Your Information' : 'Manage Profile'}</p>
+                            <p className='text-center p-0 m-0 text-white'>{pathName === '/ReservationOnSide/create' ? 'Your Information' : 'Manage Profile'}</p>
                         </div>
 
                         <div className="px-3 my-3">
                             <div className="form-floating mb-3">
-                                <input type="text" name='name' className="form-control ps-2" id="floatingInputName" placeholder="UserName" autoComplete='userName' value={patientData?.name} onChange={() => patientData?.name} />
+                                <input type="text" name='name' className="form-control ps-2" id="floatingInputName" placeholder="UserName" autoComplete='userName' 
+                                defaultValue={patientData?.name}  onChange={() => patientData?.name} />
                                 <label htmlFor="floatingInputName" className='ps-2'>UserName<span className="text-danger">*</span></label>
                             </div>
 
                             <div className="form-floating mb-3">
-                                <input type="email" name="email" className="form-control ps-2" id="floatingInputEmail" placeholder="name@example.com" value={patientData.email} onChange={() => patientData.email} />
+                                <input type="email" name="email" className="form-control ps-2" id="floatingInputEmail" placeholder="name@example.com" 
+                                defaultValue={patientData.email} onChange={() => patientData.email} />
                                 <label htmlFor="floatingInputEmail  " className='ps-2'>Email address<span className="text-danger">*</span></label>
 
                             </div>
-                            <div className={`form-floating mb-3 ${pathName === '/Reservation/create' ? 'd-none' : 'd-block'}`}>
-                                <input type="date" name="date" className="form-control" id="floatingInputDate" placeholder="01-01-2024" value={patientData.date} onChange={() => patientData.date} />
+                            <div className={`form-floating mb-3 ${pathName === '/ReservationOnSide/create' ? 'd-none' : 'd-block'}`}>
+                                <input type="date" name="date" className="form-control" id="floatingInputDate" placeholder="01-01-2024" defaultValue={patientData.date} onChange={() => patientData.date} />
                                 <label htmlFor="floatingInputDate" className='ps-2'>Date Of Birth<span className="text-danger">*</span></label>
 
                             </div>
-                            <div className={`w-100 mb-3 ${pathName === '/Reservation/create' ? 'd-none' : 'd-block'}`}>
+                            <div className={`w-100 mb-3 ${pathName === '/ReservationOnSide/create' ? 'd-none' : 'd-block'}`}>
                                 <div className="row justify-content-center">
                                     <div className="col-md-6 form-floating">
-                                        <input type="number" name="hight" maxLength={3} className="form-control " id="floatingInputHight" placeholder="20" value={patientData.hight} onChange={() => patientData.hight} />
+                                        <input type="number" name="hight" maxLength={3} className="form-control " id="floatingInputHight" placeholder="20" defaultValue={patientData.hight} onChange={() => patientData.hight} />
                                         <label htmlFor="floatingInputHight" className='ms-2'>Your Hight<span className="text-danger">*</span></label>
 
                                     </div>
                                     <div className="col-md-6 form-floating mt-3 mt-md-0">
-                                        <input type="number" name="weight" maxLength={3} className="form-control " id="floatingInputWeight" placeholder="20" value={patientData.weight} onChange={() => patientData.weight} />
+                                        <input type="number" name="weight" maxLength={3} className="form-control " id="floatingInputWeight" placeholder="20" defaultValue={patientData.weight} onChange={() => patientData.weight} />
                                         <label htmlFor="floatingInputWeight" className='ms-2'>Your Weight<span className="text-danger">*</span></label>
 
                                     </div>
@@ -135,17 +139,15 @@ export default function UserDetails() {
                             </div>
 
                             <div className="form-floating mb-3">
-                                <input type="phone" name="phone" className="form-control" id="floatingInputPhone" placeholder="012345678" value={patientData.phone} onChange={() => patientData.phone} />
+                                <input type="phone" name="phone" className="form-control" id="floatingInputPhone" placeholder="012345678" defaultValue={patientData.phone} onChange={() => patientData.phone} />
                                 <label htmlFor="floatingInputPhone">Mobile Number<span className="text-danger">*</span></label>
                             </div>
                         </div>
-                        {pathName === '/Reservation/create' ? <div className='ps-3 my-3'>
+                        {pathName === '/ReservationOnSide/create' ? <div className='ps-3 my-3'>
                             <button className='btn btn-danger me-3' style={{ paddingLeft: '80px', paddingRight: '80px' }} onClick={() => checkReservation()}>Book</button>
                             <button className='btn btn-outline-primary px-4' onClick={() => CancelFun()}>Cancel</button>
                         </div> : ''}
-
                     </div>
-
                 </div>
             </>}
         </>

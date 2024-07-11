@@ -55,7 +55,7 @@ export default function ChangePassword() {
                 {/* <div className="container"> */}
                     <div className="ChangePasswordForm bg-white rounded-3 w-100">
                         <div className="TopText topTextBgColor py-2">
-                            <p className='text-center p-0 m-0 text-white'>Register Now</p>
+                            <p className='text-center p-0 m-0 text-white'>Change Your Password</p>
                         </div>
                         <form onSubmit={formik.handleSubmit} className="p-3">
                             {isMessage.length > 0 ? <p className="alert alert-info" role="alert">{isMessage}</p> : ''}

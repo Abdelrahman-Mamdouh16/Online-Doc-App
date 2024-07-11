@@ -1,11 +1,10 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
-import UserDetails from '../../Account/UserDetails/UserDetails';
-import { useLocation, useNavigate } from 'react-router-dom';
+import UserDetails from '../Account/UserDetails/UserDetails';
+import {  useNavigate } from 'react-router-dom';
 
 
-export default function CreateReservation() {
+export default function CreateReservationOnSide() {
   const navigation = useNavigate();
   const { doctorData, doctorTimeStart, doctorTimeEnd, doctorDay } = useSelector((state) => state.ReservationDocData)
 
@@ -16,7 +15,7 @@ export default function CreateReservation() {
       navigation(-1)
       localStorage.removeItem('firstLoadDone')
     }
-  }, []);
+  }, [navigation]);
 
 
   return (

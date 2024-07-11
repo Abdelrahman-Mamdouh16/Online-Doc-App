@@ -1,13 +1,12 @@
 import { useFormik } from 'formik'
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-hot-toast';
 
 export default function SearchInputsLeft() {
 
     const navigate = useNavigate()
     async function searchLefHandling(value) {
         try {
-            var path = `/doctors/DoctorsData/${value.ChooseSpecialty}/${value.ChooseCity}`;
+            var path = `/doctors/DoctorsDataOnSide/${value.ChooseSpecialty}/${value.ChooseCity}`;
             if (value.ChooseArea) {
                 path += `/${value.ChooseArea}`;
             };

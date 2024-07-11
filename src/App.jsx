@@ -13,12 +13,13 @@ import LayoutAccount from './component/Account/LayoutAccount.jsx'
 import './App.css'
 import ChangePassword from './component/Account/changePassword/ChangePassword.jsx'
 import MainLoader from './component/loaders/MainLoader/MainLoader.jsx'
-import DoctorsData from './component/doctorsData/DoctorsData.jsx'
-import CreateReservation from './component/doctorsData/createReservation/CreateReservation.jsx'
-import ReservationThankYou from './component/doctorsData/reservationThankYou/ReservationThankYou';
 import MyAppointment from './component/Account/myAppointment/MyAppointment.jsx'
 import GetAppointment from './component/Account/getAppoinment/GetAppointment.jsx'
 import NotFound from './component/notFound/NotFound.jsx'
+import ReservationThankYou from './component/reservationThankYou/ReservationThankYou.jsx'
+import DoctorsDataOnSide from './component/doctorsDataOnSide/DoctorsDataOnSide.jsx'
+import DoctorsDataOnTelehealth from './component/doctorsDataOnTelehealth/DoctorsDataOnTelehealth.jsx'
+import CreateReservationOnSide from './component/createReservationOnSide/CreateReservationOnSide.jsx'
 
 export default function App() {
   
@@ -39,11 +40,11 @@ export default function App() {
           ]
         },
         { path: '/cart', element: <Protect><Cart /></Protect> },
-        { path: '/doctors/DoctorsData/:specialization/:city/:area?/:docName?', element: <Protect><DoctorsData /></Protect> },
-        { path: '/Reservation/create', element: <Protect><CreateReservation /></Protect> },
+        { path: '/doctors/DoctorsDataOnSide/:specialization/:city/:area?/:docName?', element: <Protect><DoctorsDataOnSide /></Protect> },
+        { path: '/doctors/DoctorsDataOnTelehealth/:specialization/:city', element: <Protect><DoctorsDataOnTelehealth /></Protect> },
+        { path: '/ReservationOnSide/create', element: <Protect><CreateReservationOnSide /></Protect> },
         { path: '/Reservation/Thank-You', element: <Protect><ReservationThankYou /></Protect> },
         { path: '*', element: <NotFound/> },
-
       ]
     }
   ])

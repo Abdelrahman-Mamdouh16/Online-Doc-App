@@ -77,7 +77,7 @@ export default function GetAppointment() {
                     </td>
                     <td className='col-sm-2'>{reservationData?.reservation?.status}</td>
                     <td className='col-sm-2'>
-                      {reservationData.reservation.status == 'deleted' ? "" :
+                      {reservationData.reservation.status === 'deleted' ? "" :
                         <button className='btn btn-danger w-75' onClick={() => deleteReservation(reservationData?.reservation?._id)}>delete</button>
                       }
                     </td>

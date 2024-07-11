@@ -1,15 +1,15 @@
 import React from 'react'
 import ass from '../../public/error.svg'
 // import '../NotFound/NotFound.css'
-import { Helmet } from 'react-helmet';
+// import { Helmet } from 'react-helmet';
 
 export default function NotFound() {
 
   return (
     <>
-      <Helmet>
+      {/* <Helmet>
         <title>Page Not Found 404</title>
-      </Helmet>
+      </Helmet> */}
       <div className="img text-center" style={{ margin: '80px 0' }}>
         <div className="container">
           <div className="row">

@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick'
 import SpinnerGrow from '../../loaders/spinnerGrow/SpinnerGrow'
+import { Link } from 'react-router-dom';
 
 export default function TopSpecialties() {
     const [SpecialtiesData, serSpecialtiesData] = useState([])
@@ -61,14 +62,14 @@ export default function TopSpecialties() {
             <div className="container">
                 <div className='d-md-flex justify-content-between mb-4'>
                     <h1 className='p-0 m-0' style={{ color: 'rgb(102, 102, 102)', fontSize: '32px', fontWeight: '700' }}>Book from top specialties</h1>
-                    <button className='btn btn-danger mt-3 mt-md-0'>All Offers <i className="fa-solid fa-caret-right"></i></button>
+                    <Link to={`/doctors/DoctorsData/all-specialties/Egypt`} className='btn btn-danger mt-3 mt-md-0'>All Offers <i className="fa-solid fa-caret-right"></i></Link>
                 </div>
                 <div className='topSpecialtiesSlider mt-2'>
                     {SpecialtiesData.length === 0 && !isErrorSpecialties ? <SpinnerGrow />
                         : <>
                             {isErrorSpecialties ? <h3 className='text-center p-0 m-0'>{isErrorSpecialties}...!</h3> : <>
                                 <Slider {...settings} key={''}>
-                                    {SpecialtiesData?.map((ele, index) => <div key={ele._id} className='px-2'>
+                                    {SpecialtiesData?.map((ele, index) => <Link to={`/doctors/DoctorsData/${ele.name}/Egypt`} key={index} className='px-2 text-decoration-none'>
                                         <div className="topSpecialtiesImg" key={ele._id}>
                                             <img src={ele.img} className='w-100 rounded-4 rounded-bottom-0' alt="" />
                                         </div>
@@ -84,7 +85,7 @@ export default function TopSpecialties() {
                                                 fontWeight: '600'
                                             }}>{ele.name}</h5>
                                         </div>
-                                    </div>
+                                    </Link>
                                     )}
 
                                 </Slider>

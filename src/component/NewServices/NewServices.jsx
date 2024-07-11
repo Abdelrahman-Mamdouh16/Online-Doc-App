@@ -2,7 +2,7 @@ import React from 'react'
 import './NewServices.css';
 import TopSpecialties from './topSpecialties/TopSpecialties.jsx';
 import TopOffers from './topOffers/TopOffers.jsx';
-import North from './north/North.jsx';
+// import North from './north/North.jsx';
 // import MedicalQuestion from './medicalQuestion/MedicalQuestion.jsx';
 import Pharmacy from './Pharmacy/Pharmacy.jsx';
 import LastCard from './lastCard/LastCard.jsx';

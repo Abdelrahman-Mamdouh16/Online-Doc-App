@@ -1,30 +1,29 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-// import SearchInputsLeft from '../searchInputsLeftMain/SearchInputsLeft';
-import './DoctorsData.css'
+import './DoctorsDataOnSide.css'
 import Slider from 'react-slick';
 import { useDispatch } from 'react-redux';
 import { setDoctorDay, setDoctorData, setDoctorTimeStart, setDoctorTimeEnd } from '../../Redux/Slices/ReservationDocData.slice.js';
 import SearchInputsLeft from '../mainSlide/searchInputsLeftMain(Book a doctor)/SearchInputsLeft.jsx';
-import SpinnerLoading from './../loaders/SpinnerLoading/SpinnerLoading';
-export default function DoctorsData() {
-  const param = useParams()
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const [searchData, setSearchData] = useState([])
-  const [searchMessage, setSearchMessage] = useState([])
+import SpinnerLoading from '../loaders/SpinnerLoading/SpinnerLoading.jsx';
+export default function DoctorsDataOnSide() {
+  const param = useParams();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [searchData, setSearchData] = useState([]);
+  const [searchMessage, setSearchMessage] = useState([]);
   useEffect(() => {
     async function searchLefHandling() {
       try {
         const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/doctor/DocSearch`, param);
         console.log(data);
         if (data.success === true) {
-          setSearchData(data.result)
-          setSearchMessage(data.message)
+          setSearchData(data.result);
+          setSearchMessage(data.message);
         } else {
-          setSearchData('')
-          setSearchMessage(data.message)
+          setSearchData('');
+          setSearchMessage(data.message);
         }
       } catch (error) {
         console.log(error);
@@ -100,7 +99,7 @@ export default function DoctorsData() {
             </h1>
             {searchMessage ? <p style={{ fontSize: '12px', color: 'rgb(116, 116, 112)' }}>{searchMessage}</p> : ''}
           </div>
-          {searchMessage == 'doctors is not found' ? '' :
+          {searchMessage === 'doctors is not found' ? '' :
             !searchData.length ? <SpinnerLoading />
               : searchData?.map((ele, index) => {
                 return <div className=' bg-white mb-2 rounded mx-md-5 styleDocCard' style={{ cursor: 'pointer' }} key={index}>
