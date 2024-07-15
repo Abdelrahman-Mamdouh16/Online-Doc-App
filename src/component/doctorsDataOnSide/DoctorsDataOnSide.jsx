@@ -66,7 +66,7 @@ export default function DoctorsDataOnSide() {
     dispatch(setDoctorTimeEnd(timeEnd));
     dispatch(setDoctorDay(theDay));
     // console.log(id, timeStart, timeEnd, theDay);
-    navigate('/Reservation/create');
+    navigate('/reservationOnSide/create');
   }
   console.log(searchData);
   return (

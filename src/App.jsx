@@ -20,6 +20,7 @@ import ReservationThankYou from './component/reservationThankYou/ReservationThan
 import DoctorsDataOnSide from './component/doctorsDataOnSide/DoctorsDataOnSide.jsx'
 import DoctorsDataOnTelehealth from './component/doctorsDataOnTelehealth/DoctorsDataOnTelehealth.jsx'
 import CreateReservationOnSide from './component/createReservationOnSide/CreateReservationOnSide.jsx'
+import CreateReservationOnTelehealth from './component/createReservationOnTelehealth/CreateReservationOnTelehealth.jsx'
 
 export default function App() {
   
@@ -42,8 +43,9 @@ export default function App() {
         { path: '/cart', element: <Protect><Cart /></Protect> },
         { path: '/doctors/DoctorsDataOnSide/:specialization/:city/:area?/:docName?', element: <Protect><DoctorsDataOnSide /></Protect> },
         { path: '/doctors/DoctorsDataOnTelehealth/:specialization/:city', element: <Protect><DoctorsDataOnTelehealth /></Protect> },
-        { path: '/ReservationOnSide/create', element: <Protect><CreateReservationOnSide /></Protect> },
-        { path: '/Reservation/Thank-You', element: <Protect><ReservationThankYou /></Protect> },
+        { path: '/reservationOnSide/create', element: <Protect><CreateReservationOnSide /></Protect> },
+        { path: '/reservationOnTelehealth/create', element: <Protect><CreateReservationOnTelehealth /></Protect> },
+        { path: '/reservation/Thank-You', element: <Protect><ReservationThankYou /></Protect> },
         { path: '*', element: <NotFound/> },
       ]
     }

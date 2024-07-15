@@ -59,6 +59,7 @@ export default function UserDetails() {
         timeEnd: doctorTimeEnd,
         date: doctorDay.replace(/^\w+\s+/g, `${currentYear}/`),
         status: 'pending',
+        where:'On Telehealth'
     }
     const checkReservation = async () => {
         try {
@@ -75,7 +76,7 @@ export default function UserDetails() {
                         console.log(data);
                         if (data.success === true) {
                             toast.success(data.message);
-                            navigate("/Reservation/Thank-You");
+                            navigate("/reservation/Thank-You");
                         };
                         if (data.success === false)
                             toast.error(data.message);
@@ -102,7 +103,7 @@ export default function UserDetails() {
 
                     <div className="UserDetailsForm bg-white w-100">
                         <div className="TopText topTextBgColor py-2">
-                            <p className='text-center p-0 m-0 text-white'>{pathName === '/ReservationOnSide/create' ? 'Your Information' : 'Manage Profile'}</p>
+                            <p className='text-center p-0 m-0 text-white'>{pathName === '/reservationOnSide/create' || pathName === '/reservationOnTelehealth/create' ? 'Your Information' : 'Manage Profile'}</p>
                         </div>
 
                         <div className="px-3 my-3">
@@ -118,12 +119,12 @@ export default function UserDetails() {
                                 <label htmlFor="floatingInputEmail  " className='ps-2'>Email address<span className="text-danger">*</span></label>
 
                             </div>
-                            <div className={`form-floating mb-3 ${pathName === '/ReservationOnSide/create' ? 'd-none' : 'd-block'}`}>
+                            <div className={`form-floating mb-3 ${pathName === '/reservationOnSide/create' || pathName === '/reservationOnTelehealth/create' ? 'd-none' : 'd-block'}`}>
                                 <input type="date" name="date" className="form-control" id="floatingInputDate" placeholder="01-01-2024" defaultValue={patientData.date} onChange={() => patientData.date} />
                                 <label htmlFor="floatingInputDate" className='ps-2'>Date Of Birth<span className="text-danger">*</span></label>
 
                             </div>
-                            <div className={`w-100 mb-3 ${pathName === '/ReservationOnSide/create' ? 'd-none' : 'd-block'}`}>
+                            <div className={`w-100 mb-3 ${pathName === '/reservationOnSide/create' || pathName === '/reservationOnTelehealth/create' ? 'd-none' : 'd-block'}`}>
                                 <div className="row justify-content-center">
                                     <div className="col-md-6 form-floating">
                                         <input type="number" name="hight" maxLength={3} className="form-control " id="floatingInputHight" placeholder="20" defaultValue={patientData.hight} onChange={() => patientData.hight} />
@@ -143,7 +144,7 @@ export default function UserDetails() {
                                 <label htmlFor="floatingInputPhone">Mobile Number<span className="text-danger">*</span></label>
                             </div>
                         </div>
-                        {pathName === '/ReservationOnSide/create' ? <div className='ps-3 my-3'>
+                        {pathName === '/reservationOnSide/create' || pathName === '/reservationOnTelehealth/create' ? <div className='ps-3 my-3'>
                             <button className='btn btn-danger me-3' style={{ paddingLeft: '80px', paddingRight: '80px' }} onClick={() => checkReservation()}>Book</button>
                             <button className='btn btn-outline-primary px-4' onClick={() => CancelFun()}>Cancel</button>
                         </div> : ''}

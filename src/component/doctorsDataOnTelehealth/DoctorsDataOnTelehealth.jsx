@@ -17,7 +17,7 @@ export default function DoctorsDataOnTelehealth() {
     useEffect(() => {
         async function searchRightHandling() {
             try {
-                const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/doctor/DocSearch`, param);
+                const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/doctorOnTelehealth/DocSearch`, param);
                 console.log(data);
                 if (data.success === true) {
                     setSearchData(data.result);
@@ -63,7 +63,7 @@ export default function DoctorsDataOnTelehealth() {
         dispatch(setDoctorTimeEnd(timeEnd));
         dispatch(setDoctorDay(theDay));
         // console.log(id, timeStart, timeEnd, theDay);
-        navigate('/ReservationOnSide/create');
+        navigate('/reservationOnTelehealth/create');
     }
     // console.log(searchData);
     return (
@@ -113,12 +113,11 @@ export default function DoctorsDataOnTelehealth() {
 
                                                 <p className='m-0 fw-lighter styleDocDetails' style={{ fontSize: '.8rem' }}>{ele.description}</p>
 
-                                                <p className='m-0 styleDocDetails fs-6'>Rate : {ele.rate} <i className="fa-solid fa-star 
-                  text-warning"></i></p>
+                                                <p className='m-0 styleDocDetails fs-6'>Rate : {ele.rate} <i className="fa-solid fa-star text-warning"></i></p>
 
                                                 <p className='m-0 styleDocDetails'><i className="fa-solid fa-stethoscope textMain_Blue"></i>  Specialized in : <span className='fw-bold'>{ele.specialization}</span></p>
 
-                                                <p className='m-0 styleDocDetails'><i className="fa-solid fa-location-dot pe-1 textMain_Blue"></i>  Location : {ele.address}</p>
+                                                <p className='m-0 styleDocDetails'><i className="fa-solid fa-location-dot pe-1 textMain_Blue"></i>  Location : On Telehealth</p>
 
                                                 <p className='m-0 styleDocDetails'><i className="fa-solid fa-money-check-dollar textMain_Blue"></i> Feaze : {ele.cost} EGP</p>
 
@@ -181,7 +180,6 @@ export default function DoctorsDataOnTelehealth() {
                                                     <div className="bg-danger text-center py-1"><button className='btn text-white w-100' onClick={() => Booking(ele, ele.timeStart, ele.timeEnd, getAfterTomorrowAfterThree)}>Book</button></div>
                                                 </div>
                                             </Slider>
-                                            <p className='styleDocDetails'>Reservation required, first-come, first-served</p>
                                         </div>
                                     </div>
                                 </div>
