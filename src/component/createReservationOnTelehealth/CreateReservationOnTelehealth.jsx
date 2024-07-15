@@ -6,12 +6,13 @@ export default function CreateReservationOnTelehealth() {
     const navigation = useNavigate();
     const { doctorData, doctorTimeStart, doctorTimeEnd, doctorDay } = useSelector((state) => state.ReservationDocData)
 
+    // localStorage.setItem('firstLoadDone', '1');
     useEffect(() => {
-        if (localStorage.getItem('firstLoadDone') === undefined||localStorage.getItem('firstLoadDone')===null) {
-            localStorage.setItem('firstLoadDone', 1);
+        if (sessionStorage.getItem('firstLoadDone') === null||sessionStorage.getItem('firstLoadDone') === undefined) {
+            sessionStorage.setItem('firstLoadDone', 1);
         } else {
             navigation(-1)
-            localStorage.removeItem('firstLoadDone')
+            sessionStorage.removeItem('firstLoadDone')
         }
     }, [navigation]);
     return (

@@ -9,13 +9,13 @@ export default function CreateReservationOnSide() {
   const { doctorData, doctorTimeStart, doctorTimeEnd, doctorDay } = useSelector((state) => state.ReservationDocData)
 
   useEffect(() => {
-    if (localStorage.getItem('firstLoadDone') === null) {
-      localStorage.setItem('firstLoadDone', 1);
+    if (sessionStorage.getItem('firstLoadDone') === null||sessionStorage.getItem('firstLoadDone') === undefined) {
+        sessionStorage.setItem('firstLoadDone', 1);
     } else {
-      navigation(-1)
-      localStorage.removeItem('firstLoadDone')
+        navigation(-1)
+        sessionStorage.removeItem('firstLoadDone')
     }
-  }, [navigation]);
+}, [navigation]);
 
 
   return (
