@@ -8,6 +8,7 @@ const ReservationDocDataSlice = createSlice({
         doctorTimeStart: '',
         doctorTimeEnd: '',
         doctorDay: '',
+        doctorCost:''
     }
     ,
     reducers: {
@@ -23,7 +24,10 @@ const ReservationDocDataSlice = createSlice({
         setDoctorDay: (state, action) => {
             state.doctorDay = action.payload;
         },
+        setDoctorCost: (state, action) => {
+            state.doctorCost = action.payload;
+        },
     }
 })
-export const { setDoctorData,setDoctorDay ,setDoctorTimeStart,setDoctorTimeEnd} = ReservationDocDataSlice.actions
+export const { setDoctorData,setDoctorDay ,setDoctorTimeStart,setDoctorTimeEnd,setDoctorCost} = ReservationDocDataSlice.actions
 export default ReservationDocDataSlice.reducer;

@@ -14,7 +14,10 @@ export default function UserDetails() {
     const pathName = location.pathname;
     const { userToken, userId } = useSelector((state) => state.userLoginData);
     const { doctorData, doctorTimeStart, doctorTimeEnd, doctorDay } = useSelector((state) => state.ReservationDocData);
-
+    const [paymentMethod, setPaymentMethod] = useState()
+    const handleRadioChange = (event) => {
+        setPaymentMethod(event.target.value);
+    };
     // console.log(userToken, userId);
     let headers = { authorization: "Bearer " + userToken };
     const dispatch = useDispatch()
@@ -59,38 +62,39 @@ export default function UserDetails() {
         timeEnd: doctorTimeEnd,
         date: doctorDay.replace(/^\w+\s+/g, `${currentYear}/`),
         status: 'pending',
-        where:'On Telehealth'
+        where: 'On Telehealth'
     }
     const checkReservation = async () => {
-        try {
-            const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/Reservation/checkReservation`, value)
-            console.log(data);
-            if (data.success === true) {
-                toast.error(`${data.message} you must remove it or choose another one`);
-            };
-            if (data.success === false) {
-                // toast.success(data.message);
-                const createReservation = async () => {
-                    try {
-                        const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/Reservation/create`, value)
-                        console.log(data);
-                        if (data.success === true) {
-                            toast.success(data.message);
-                            navigate("/reservation/Thank-You");
-                        };
-                        if (data.success === false)
-                            toast.error(data.message);
-                    } catch (error) {
-                        console.log(error.message);
-                        toast.error(error.message.split(" ").slice(0, 2).join(" "));
-                    }
-                }
-                createReservation()
-            }
-        } catch (error) {
-            console.log(error.message);
-            toast.error(error.message.split(" ").slice(0, 2).join(" "));
-        }
+        console.log(paymentMethod);
+        // try {
+        //     const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/Reservation/checkReservation`, value)
+        //     console.log(data);
+        //     if (data.success === true) {
+        //         toast.error(`${data.message} you must remove it or choose another one`);
+        //     };
+        //     if (data.success === false) {
+        //         // toast.success(data.message);
+        //         const createReservation = async () => {
+        //             try {
+        //                 const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/Reservation/create`, value)
+        //                 console.log(data);
+        //                 if (data.success === true) {
+        //                     toast.success(data.message);
+        //                     navigate("/reservation/Thank-You");
+        //                 };
+        //                 if (data.success === false)
+        //                     toast.error(data.message);
+        //             } catch (error) {
+        //                 console.log(error.message);
+        //                 toast.error(error.message.split(" ").slice(0, 2).join(" "));
+        //             }
+        //         }
+        //         createReservation()
+        //     }
+        // } catch (error) {
+        //     console.log(error.message);
+        //     toast.error(error.message.split(" ").slice(0, 2).join(" "));
+        // }
     }
 
     const CancelFun = () => {
@@ -108,14 +112,14 @@ export default function UserDetails() {
 
                         <div className="px-3 my-3">
                             <div className="form-floating mb-3">
-                                <input type="text" name='name' className="form-control ps-2" id="floatingInputName" placeholder="UserName" autoComplete='userName' 
-                                defaultValue={patientData?.name}  onChange={() => patientData?.name} />
+                                <input type="text" name='name' className="form-control ps-2" id="floatingInputName" placeholder="UserName" autoComplete='userName'
+                                    defaultValue={patientData?.name} onChange={() => patientData?.name} />
                                 <label htmlFor="floatingInputName" className='ps-2'>UserName<span className="text-danger">*</span></label>
                             </div>
 
                             <div className="form-floating mb-3">
-                                <input type="email" name="email" className="form-control ps-2" id="floatingInputEmail" placeholder="name@example.com" 
-                                defaultValue={patientData.email} onChange={() => patientData.email} />
+                                <input type="email" name="email" className="form-control ps-2" id="floatingInputEmail" placeholder="name@example.com"
+                                    defaultValue={patientData.email} onChange={() => patientData.email} />
                                 <label htmlFor="floatingInputEmail  " className='ps-2'>Email address<span className="text-danger">*</span></label>
 
                             </div>
@@ -143,8 +147,29 @@ export default function UserDetails() {
                                 <input type="phone" name="phone" className="form-control" id="floatingInputPhone" placeholder="012345678" defaultValue={patientData.phone} onChange={() => patientData.phone} />
                                 <label htmlFor="floatingInputPhone">Mobile Number<span className="text-danger">*</span></label>
                             </div>
+                            <div className='d-flex justify-content-around'>
+                                <div className="form-check d-flex align-items-center justify-content-center">
+                                    <input className="form-check-input me-2 " type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={'Fawry'} onChange={handleRadioChange} />
+                                    <label className="form-check-label d-flex justify-content-start align-items-center" htmlFor="flexRadioDefault1" >
+                                        <span className='me-2'style={{maxWidth:'10%'}}><img src={require('../../../public/fawry.png')} alt="fawry.png" className='w-100' /></span> 
+                                        <span className='fs-4 fw-bold'>Fawry</span>
+                                    </label>
+                                </div>
+                                <div className="form-check d-flex align-items-center justify-content-center">
+                                <input className="form-check-input me-2 " type="radio" name="flexRadioDefault" id="flexRadioDefault2" value={'Visa Card'} onChange={handleRadioChange} />
+
+                                    <label className="form-check-label d-flex justify-content-start align-items-center" htmlFor="flexRadioDefault2" >
+                                        <span className='me-2'style={{maxWidth:'13%'}}><img src={require('../../../public/credit.png')} alt="fawry.png" className='w-100' /></span> 
+                                        <span className='fs-4 fw-bold'>Visa Card</span>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
-                        {pathName === '/reservationOnSide/create' || pathName === '/reservationOnTelehealth/create' ? <div className='ps-3 my-3'>
+                        {pathName === '/reservationOnSide/create' ? <div className='ps-3 my-3'>
+                            <button className='btn btn-danger me-3' style={{ paddingLeft: '80px', paddingRight: '80px' }} onClick={() => checkReservation()}>Book</button>
+                            <button className='btn btn-outline-primary px-4' onClick={() => CancelFun()}>Cancel</button>
+                        </div> : ''}
+                        {pathName === '/reservationOnTelehealth/create' ? <div className='ps-3 my-3'>
                             <button className='btn btn-danger me-3' style={{ paddingLeft: '80px', paddingRight: '80px' }} onClick={() => checkReservation()}>Book</button>
                             <button className='btn btn-outline-primary px-4' onClick={() => CancelFun()}>Cancel</button>
                         </div> : ''}

@@ -57,7 +57,7 @@ export default function DoctorsDataOnTelehealth() {
     const getAfterTomorrowAfterTow = new Date(getDate.getTime() + 4 * 24 * 60 * 60 * 1000).toLocaleDateString('EN-EG', options).replace(/,/g, '');
     const getAfterTomorrowAfterThree = new Date(getDate.getTime() + 5 * 24 * 60 * 60 * 1000).toLocaleDateString('EN-EG', options).replace(/,/g, '');
 
-    const Booking = (doctorData, timeStart, timeEnd, theDay) => {
+    const Booking = (doctorData, timeStart, timeEnd, theDay,theCost) => {
         dispatch(setDoctorData(doctorData));
         dispatch(setDoctorTimeStart(timeStart));
         dispatch(setDoctorTimeEnd(timeEnd));
@@ -134,7 +134,7 @@ export default function DoctorsDataOnTelehealth() {
                                                         <h1 className='m-0 fs-6'>{ele.timeEnd}</h1>
                                                     </div>
                                                     <div className="bg-danger text-center py-1">
-                                                        <button className='btn  text-white w-100' onClick={() => Booking(ele, ele.timeStart, ele.timeEnd, getToday)}>
+                                                        <button className='btn  text-white w-100' onClick={() => Booking(ele, ele.timeStart, ele.timeEnd, getToday,ele.cost)}>
                                                             Book
                                                         </button>
                                                     </div>
@@ -145,7 +145,7 @@ export default function DoctorsDataOnTelehealth() {
                                                         <h1 className='fs-6'>{ele.timeStart}</h1>
                                                         <h1 className='m-0 fs-6'>{ele.timeEnd}</h1>
                                                     </div>
-                                                    <div className="bg-danger text-center py-1"><button className='btn text-white w-100' onClick={() => Booking(ele, ele.timeStart, ele.timeEnd, getTomorrow)}>Book</button></div>
+                                                    <div className="bg-danger text-center py-1"><button className='btn text-white w-100' onClick={() => Booking(ele, ele.timeStart, ele.timeEnd, getTomorrow,ele.cost)}>Book</button></div>
                                                 </div>
                                                 <div className="w-75 bg-white my-3 rounded-top rounded-bottom overflow-hidden text-white mx-auto d-flex flex-column">
                                                     <div className="topTextBgColor text-center py-2 ">{getAfterTomorrow}</div>
@@ -153,7 +153,7 @@ export default function DoctorsDataOnTelehealth() {
                                                         <h1 className='fs-6'>{ele.timeStart}</h1>
                                                         <h1 className='m-0 fs-6'>{ele.timeEnd}</h1>
                                                     </div>
-                                                    <div className="bg-danger text-center py-1"><button className='btn text-white w-100' onClick={() => Booking(ele, ele.timeStart, ele.timeEnd, getAfterTomorrow)}>Book</button></div>
+                                                    <div className="bg-danger text-center py-1"><button className='btn text-white w-100' onClick={() => Booking(ele, ele.timeStart, ele.timeEnd, getAfterTomorrow,ele.cost)}>Book</button></div>
                                                 </div>
                                                 <div className="w-75 bg-white my-3 rounded-top rounded-bottom overflow-hidden text-white mx-auto d-flex flex-column">
                                                     <div className="topTextBgColor text-center py-2 ">{getAfterTomorrowAfterOne}</div>
@@ -161,7 +161,7 @@ export default function DoctorsDataOnTelehealth() {
                                                         <h1 className='fs-6'>{ele.timeStart}</h1>
                                                         <h1 className='m-0 fs-6'>{ele.timeEnd}</h1>
                                                     </div>
-                                                    <div className="bg-danger text-center py-1"><button className='btn text-white' onClick={() => Booking(ele, ele.timeStart, ele.timeEnd, getAfterTomorrowAfterOne)}>Book</button></div>
+                                                    <div className="bg-danger text-center py-1"><button className='btn text-white' onClick={() => Booking(ele, ele.timeStart, ele.timeEnd, getAfterTomorrowAfterOne,ele.cost)}>Book</button></div>
                                                 </div>
                                                 <div className="w-75 bg-white my-3 rounded-top rounded-bottom overflow-hidden text-white mx-auto d-flex flex-column">
                                                     <div className="topTextBgColor text-center py-2 ">{getAfterTomorrowAfterTow}</div>
@@ -169,7 +169,7 @@ export default function DoctorsDataOnTelehealth() {
                                                         <h1 className='fs-6'>{ele.timeStart}</h1>
                                                         <h1 className='m-0 fs-6'>{ele.timeEnd}</h1>
                                                     </div>
-                                                    <div className="bg-danger text-center py-1"><button className='btn text-white w-100' onClick={() => Booking(ele, ele.timeStart, ele.timeEnd, getAfterTomorrowAfterTow)}>Book</button></div>
+                                                    <div className="bg-danger text-center py-1"><button className='btn text-white w-100' onClick={() => Booking(ele, ele.timeStart, ele.timeEnd, getAfterTomorrowAfterTow,ele.cost)}>Book</button></div>
                                                 </div>
                                                 <div className="w-75 bg-white my-3 rounded-top rounded-bottom overflow-hidden text-white mx-auto d-flex flex-column">
                                                     <div className="topTextBgColor text-center py-2 ">{getAfterTomorrowAfterThree}</div>
@@ -177,7 +177,7 @@ export default function DoctorsDataOnTelehealth() {
                                                         <h1 className='fs-6'>{ele.timeStart}</h1>
                                                         <h1 className='m-0 fs-6'>{ele.timeEnd}</h1>
                                                     </div>
-                                                    <div className="bg-danger text-center py-1"><button className='btn text-white w-100' onClick={() => Booking(ele, ele.timeStart, ele.timeEnd, getAfterTomorrowAfterThree)}>Book</button></div>
+                                                    <div className="bg-danger text-center py-1"><button className='btn text-white w-100' onClick={() => Booking(ele, ele.timeStart, ele.timeEnd, getAfterTomorrowAfterThree,ele.cost)}>Book</button></div>
                                                 </div>
                                             </Slider>
                                         </div>

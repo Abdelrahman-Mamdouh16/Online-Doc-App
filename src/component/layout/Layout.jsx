@@ -9,18 +9,20 @@ export default function Layout() {
     const location = useLocation()
     const pathName = location.pathname;
 
-
+console.log(pathName);
     useEffect(() => {
-        if (pathName !== '/Reservation/create') {
-            localStorage.removeItem('firstLoadDone')
+        if (pathName !== '/reservationOnSide/create') {
+            localStorage.removeItem('firstLoadDoneOnSide')
         }
-        
+        if (pathName !== '/reservationOnTelehealth/create') {
+            localStorage.removeItem('firstLoadDoneOnTelehealth')
+        }
     }, [pathName])
     return (
         <>
             <div className='app bgColorLite'>
                 <Navbar />
-                <ScrollRestoration/> 
+                <ScrollRestoration />
                 <Outlet />
                 <div className='container w-50 position-fixed fixed-bottom ' style={{ bottom: '10%', zIndex: '1100' }}>
                     <Offline>

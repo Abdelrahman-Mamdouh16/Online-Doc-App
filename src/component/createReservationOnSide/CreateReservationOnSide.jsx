@@ -1,19 +1,20 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import UserDetails from '../Account/UserDetails/UserDetails';
-import {  useNavigate } from 'react-router-dom';
+import {   useNavigate } from 'react-router-dom';
 
 
 export default function CreateReservationOnSide() {
+  // const {pathname}=useLocation()
   const navigation = useNavigate();
   const { doctorData, doctorTimeStart, doctorTimeEnd, doctorDay } = useSelector((state) => state.ReservationDocData)
 
   useEffect(() => {
-    if (sessionStorage.getItem('firstLoadDone') === null||sessionStorage.getItem('firstLoadDone') === undefined) {
-        sessionStorage.setItem('firstLoadDone', 1);
+    if (localStorage.getItem('firstLoadDoneOnSide') === null||localStorage.getItem('firstLoadDoneOnSide') === undefined) {
+      localStorage.setItem('firstLoadDoneOnSide', 1);
     } else {
         navigation(-1)
-        sessionStorage.removeItem('firstLoadDone')
+        localStorage.removeItem('firstLoadDoneOnSide')
     }
 }, [navigation]);
 

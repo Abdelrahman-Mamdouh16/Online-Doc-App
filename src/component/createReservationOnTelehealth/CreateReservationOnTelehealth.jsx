@@ -6,13 +6,12 @@ export default function CreateReservationOnTelehealth() {
     const navigation = useNavigate();
     const { doctorData, doctorTimeStart, doctorTimeEnd, doctorDay } = useSelector((state) => state.ReservationDocData)
 
-    // localStorage.setItem('firstLoadDone', '1');
     useEffect(() => {
-        if (sessionStorage.getItem('firstLoadDone') === null||sessionStorage.getItem('firstLoadDone') === undefined) {
-            sessionStorage.setItem('firstLoadDone', 1);
+        if (localStorage.getItem('firstLoadDoneOnTelehealth') === null||localStorage.getItem('firstLoadDoneOnTelehealth') === undefined) {
+          localStorage.setItem('firstLoadDoneOnTelehealth', 1);
         } else {
             navigation(-1)
-            sessionStorage.removeItem('firstLoadDone')
+            localStorage.removeItem('firstLoadDoneOnTelehealth')
         }
     }, [navigation]);
     return (
@@ -40,7 +39,7 @@ export default function CreateReservationOnTelehealth() {
                                         </div>
                                     </div>
                                     <div className="col-12 bgColorLite p-4 textMain my-3 ">
-                                        <p className='m-0 fs-5'>{doctorDay} - <span className='text-capitalize'>{doctorTimeStart}</span> <span className='text-capitalize'>{doctorTimeEnd}</span> <span className='fw-bold'> On Telehealth</span></p>
+                                        <p className='m-0 fs-5'>{doctorDay} - <span className='text-capitalize'>{doctorTimeStart}</span> <span className='text-capitalize'>{doctorTimeEnd}</span> <span className='fw-bold'> On Telehealth Call</span></p>
                                     </div>
                                 </div>
                             </div>
