@@ -34,7 +34,7 @@ export default function CreateReservationOnTelehealth() {
                                                 </span>
                                             </p>
                                             <p className='m-0 fw-lighter styleDocDetails' style={{ fontSize: '.8rem' }}>{doctorData?.description}</p>
-                                            <p className='m-0 fw-bold styleDocDetails fs-5'>Feaze : <span>{doctorData?.cost} </span>
+                                            <p className='m-0 fw-bold styleDocDetails fs-5 '>Feaze : <span>{doctorData?.cost} </span>
                                                 <i className="fa-solid fa-money-check-dollar"></i></p>
                                         </div>
                                     </div>

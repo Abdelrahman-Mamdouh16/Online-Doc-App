@@ -21,6 +21,7 @@ import DoctorsDataOnSide from './component/doctorsDataOnSide/DoctorsDataOnSide.j
 import DoctorsDataOnTelehealth from './component/doctorsDataOnTelehealth/DoctorsDataOnTelehealth.jsx'
 import CreateReservationOnSide from './component/createReservationOnSide/CreateReservationOnSide.jsx'
 import CreateReservationOnTelehealth from './component/createReservationOnTelehealth/CreateReservationOnTelehealth.jsx'
+import CreateTelehealthCall from './component/createTelehealthCall/CreateTelehealthCall.jsx'
 
 export default function App() {
   
@@ -45,6 +46,7 @@ export default function App() {
         { path: '/doctors/DoctorsDataOnTelehealth/:specialization/:city', element: <Protect><DoctorsDataOnTelehealth /></Protect> },
         { path: '/reservationOnSide/create', element: <Protect><CreateReservationOnSide /></Protect> },
         { path: '/reservationOnTelehealth/create', element: <Protect><CreateReservationOnTelehealth /></Protect> },
+        { path: '/reservationOnTelehealth/createCall', element: <Protect><CreateTelehealthCall /></Protect> },
         { path: '/reservation/Thank-You', element: <Protect><ReservationThankYou /></Protect> },
         { path: '*', element: <NotFound/> },
       ]

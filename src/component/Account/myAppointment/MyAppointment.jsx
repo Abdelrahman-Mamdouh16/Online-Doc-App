@@ -43,8 +43,8 @@ export default function MyAppointment() {
     return (
         <>
             {
-                reservationMessage === "Not found Reservation"? <h5 className='mt-4 bg-white py-3 text-center rounded-3 textMain'>You don't have any Appointment</h5> :
-                !reservationData.length ? <Loading /> :
+                reservationMessage === "Not found Reservation" ? <h5 className='mt-4 bg-white py-3 text-center rounded-3 textMain'>You don't have any Appointment</h5> :
+                    !reservationData.length ? <Loading /> :
                         <div className="MyAppointment d-flex bgColorLite my-4" >
                             <div className="MyAppointmentForm bg-white rounded-3 w-100">
                                 <div className="TopText topTextBgColor py-2">
@@ -66,7 +66,8 @@ export default function MyAppointment() {
                                             {reservationData?.map((ele, index) => {
                                                 return <tr key={index} className={ele.reservation.status === `deleted` ? `table-danger` : ''}>
                                                     <td className='align-middle'>{ele?.doctorData?.name}</td>
-                                                    <td className='d-none d-md-table-cell'>{ele?.doctorData?.area} , {ele?.doctorData?.city}  </td>
+                                                    <td className='d-none d-md-table-cell'>{ele.doctorData.area || ele.doctorData.city ? `${ele?.doctorData?.area} , ${ele?.doctorData?.city}` : ''}
+                                                    {ele.reservation.where ? ele.reservation.where : ''} </td>
                                                     <td className='col-sm-2 d-none d-md-table-cell'>
                                                         <div className='d-flex flex-column  align-items-center'>
                                                             <span>{ele?.reservation?.date}</span>
