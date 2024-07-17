@@ -66,8 +66,8 @@ export default function MyAppointment() {
                                             {reservationData?.map((ele, index) => {
                                                 return <tr key={index} className={ele.reservation.status === `deleted` ? `table-danger` : ''}>
                                                     <td className='align-middle'>{ele?.doctorData?.name}</td>
-                                                    <td className='d-none d-md-table-cell'>{ele.doctorData.area || ele.doctorData.city ? `${ele?.doctorData?.area} , ${ele?.doctorData?.city}` : ''}
-                                                    {ele.reservation.where ? ele.reservation.where : ''} </td>
+                                                    <td className='d-none d-md-table-cell'>{ele.reservation.where ? ele.reservation.where : `${ele?.doctorData?.area} , ${ele?.doctorData?.city}`}
+                                                    </td>
                                                     <td className='col-sm-2 d-none d-md-table-cell'>
                                                         <div className='d-flex flex-column  align-items-center'>
                                                             <span>{ele?.reservation?.date}</span>
@@ -97,7 +97,7 @@ export default function MyAppointment() {
                                             </div>
                                             <div className=' p-2'>
                                                 <h6 className='m-0 me-2'>Where : </h6>
-                                                <p className='m-0  mt-2'>{ele?.doctorData?.area} , {ele?.doctorData?.city}</p>
+                                                <p className='m-0  mt-2'>{ele.reservation.where ? ele.reservation.where : `${ele?.doctorData?.area} , ${ele?.doctorData?.city}`}</p>
                                             </div>
                                             <div className=' p-2'>
                                                 <h6 className='m-0 me-2'>Reservation Date : </h6>

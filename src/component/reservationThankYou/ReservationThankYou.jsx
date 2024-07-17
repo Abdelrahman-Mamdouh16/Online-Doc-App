@@ -1,7 +1,36 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import axios from 'axios';
+import React, { useEffect } from 'react'
+import toast from 'react-hot-toast';
+import { Link, json, useNavigate } from 'react-router-dom'
 
 export default function ReservationThankYou() {
+  const navigate = useNavigate();
+
+  const valueOnTelehealth = JSON.parse(localStorage.getItem('valueOnTelehealth'))
+  console.log(valueOnTelehealth);
+  const createReservation = async () => {
+    try {
+      const { data } = await axios.post(`http://localhost:8080/Reservation/createReservationOnTelehealth`, valueOnTelehealth)
+      console.log(data);
+      if (data.success === true) {
+        toast.success(data.message);
+        navigate("/");
+      };
+      if (data.success === false) {
+        toast.error(data.message);
+        navigate("/doctors/DoctorsDataOnTelehealth/all-specialties/Egypt");
+
+      }
+    } catch (error) {
+      console.log(error.message);
+      toast.error(error.message.split(" ").slice(0, 2).join(" "));
+    }
+  }
+  useEffect(() => {
+    if (localStorage.getItem('valueOnTelehealth')) {
+      createReservation()
+    }
+  }, [])
   return (
     <>
       <div className='ReservationThankYou text-center my-5'>
@@ -21,7 +50,7 @@ export default function ReservationThankYou() {
                 <div className="ReservationThankYou-text">
                   <p className='textMain'>Your reservation has been confirmed. You will receive an email confirmation shortly.</p>
                   <Link to={'/'}>
-                  <button className='btn text-white px-5' style={{backgroundColor: "#0070cd"}}> Back Home</button>
+                    <button className='btn text-white px-5' style={{ backgroundColor: "#0070cd" }}> Back Home</button>
                   </Link>
                 </div>
               </div>

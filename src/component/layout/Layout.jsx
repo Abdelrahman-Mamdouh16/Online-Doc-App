@@ -9,13 +9,16 @@ export default function Layout() {
     const location = useLocation()
     const pathName = location.pathname;
 
-console.log(pathName);
+// console.log(pathName);
     useEffect(() => {
         if (pathName !== '/reservationOnSide/create') {
             localStorage.removeItem('firstLoadDoneOnSide')
         }
         if (pathName !== '/reservationOnTelehealth/create') {
             localStorage.removeItem('firstLoadDoneOnTelehealth')
+        }
+        if (pathName !== '/reservation/Thank-You') {
+            localStorage.removeItem('valueOnTelehealth')
         }
     }, [pathName])
     return (

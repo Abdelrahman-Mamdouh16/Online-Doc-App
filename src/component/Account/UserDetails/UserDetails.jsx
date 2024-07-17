@@ -55,20 +55,29 @@ export default function UserDetails() {
     const today = new Date();
     const currentYear = today.getFullYear();
 
-    const value = {
+    const valueOnside = {
         doctorId: doctorData._id,
         userId: userId,
         timeStart: doctorTimeStart,
         timeEnd: doctorTimeEnd,
         date: doctorDay.replace(/^\w+\s+/g, `${currentYear}/`),
         status: 'pending',
-        // pathName === '/reservationOnTelehealth/create' ? where : 'On Telehealth': '' 
+        where: `${doctorData.area} , ${doctorData.city}`
 
     }
+    const valueOnTelehealth = {
+        doctorId: doctorData._id,
+        userId: userId,
+        timeStart: doctorTimeStart,
+        timeEnd: doctorTimeEnd,
+        date: doctorDay.replace(/^\w+\s+/g, `${currentYear}/`),
+        status: 'pending',
+        where: 'On Telehealth Call'
+    }
     const checkReservationOnside = async () => {
-        console.log(paymentMethod);
+        // console.log(paymentMethod);
         try {
-            const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/Reservation/checkReservation`, value)
+            const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/Reservation/checkReservation`, valueOnside)
             console.log(data);
             if (data.success === true) {
                 toast.error(`${data.message} you must remove it or choose another one`);
@@ -77,7 +86,7 @@ export default function UserDetails() {
                 // toast.success(data.message);
                 const createReservation = async () => {
                     try {
-                        const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/Reservation/create`, value)
+                        const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/Reservation/create`, valueOnside)
                         console.log(data);
                         if (data.success === true) {
                             toast.success(data.message);
@@ -98,13 +107,42 @@ export default function UserDetails() {
         }
     }
     const checkReservationOnTelehealth = async () => {
-        console.log(paymentMethod);
         if (paymentMethod === undefined) {
             toast.error('Please choose any payment method')
-        } else if (paymentMethod === 'Fawry') {
+        }
+        else if (paymentMethod === 'Fawry') {
             toast.error('Fawry payment is not supported yet');
-        } else if (paymentMethod === 'Visa Card') {
-
+        }
+        else if (paymentMethod === 'Visa Card') {
+            try {
+                const { data } = await axios.post(`http://localhost:8080/Reservation/checkReservationOnTelehealth`, valueOnTelehealth)
+                console.log(data);
+                if (data.success === true) {
+                    toast.error(`${data.message} you must remove it or choose another one`);
+                };
+                if (data.success === false) {
+                    const CheckoutSessionOnTelehealth = async () => {
+                        try {
+                            const { data } = await axios.post(`http://localhost:8080/Reservation/CheckoutSessionOnTelehealth`, valueOnTelehealth)
+                            if (data.success === true) {
+                                toast.success(data.message);
+                                localStorage.setItem('valueOnTelehealth', JSON.stringify(valueOnTelehealth))
+                                window.location.href = data.result.url
+                            };
+                            if (data.success === false) {
+                                toast.error(data.message);
+                            };
+                        } catch (error) {
+                            console.log(error.message);
+                            toast.error(error.message.split(" ").slice(0, 2).join(" "));
+                        }
+                    }
+                    CheckoutSessionOnTelehealth()
+                }
+            } catch (error) {
+                console.log(error.message);
+                toast.error(error.message.split(" ").slice(0, 2).join(" "));
+            }
         }
     }
 
@@ -115,7 +153,6 @@ export default function UserDetails() {
         <>
             {!patientData ? <Loading /> : <>
                 <div className="UserDetails d-flex bgColorLite" >
-
                     <div className="UserDetailsForm bg-white w-100">
                         <div className="TopText topTextBgColor py-2">
                             <p className='text-center p-0 m-0 text-white'>{pathName === '/reservationOnSide/create' || pathName === '/reservationOnTelehealth/create' ? 'Your Information' : 'Manage Profile'}</p>
