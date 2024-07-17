@@ -68,7 +68,7 @@ export default function GetAppointment() {
                 <tbody>
                   <tr className={reservationData.reservation.status === `deleted` ? `table-danger` : ''}>
                     <td className='align-middle'>{reservationData?.doctorData?.name}</td>
-                    <td className='d-none d-md-table-cell'>{reservationData?.doctorData?.area} , {reservationData?.doctorData?.city}  </td>
+                    <td className='d-none d-md-table-cell'>{reservationData.reservation.where ? reservationData.reservation.where : `${reservationData?.doctorData?.area} , ${reservationData?.doctorData?.city}`}  </td>
                     <td className='col-sm-2 d-none d-md-table-cell'>
                       <div className='d-flex flex-column  align-items-center'>
                         <span>{reservationData?.reservation?.date}</span>
@@ -95,7 +95,7 @@ export default function GetAppointment() {
                   </div>
                   <div className=' p-2'>
                     <h6 className='m-0 me-2'>Where : </h6>
-                    <p className='m-0 mt-2'>{reservationData?.doctorData?.area} , {reservationData?.doctorData?.city}</p>
+                    <p className='m-0 mt-2'>{reservationData.reservation.where ? reservationData.reservation.where : `${reservationData?.doctorData?.area} , ${reservationData?.doctorData?.city}`}</p>
                   </div>
                   <div className=' p-2'>
                     <h6 className='m-0 me-2'>Reservation Date : </h6>
