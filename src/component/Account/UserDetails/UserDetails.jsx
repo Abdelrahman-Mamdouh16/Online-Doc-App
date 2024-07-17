@@ -115,7 +115,7 @@ export default function UserDetails() {
         }
         else if (paymentMethod === 'Visa Card') {
             try {
-                const { data } = await axios.post(`http://localhost:8080/Reservation/checkReservationOnTelehealth`, valueOnTelehealth)
+                const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/Reservation/checkReservationOnTelehealth`, valueOnTelehealth)
                 console.log(data);
                 if (data.success === true) {
                     toast.error(`${data.message} you must remove it or choose another one`);
@@ -123,7 +123,7 @@ export default function UserDetails() {
                 if (data.success === false) {
                     const CheckoutSessionOnTelehealth = async () => {
                         try {
-                            const { data } = await axios.post(`http://localhost:8080/Reservation/CheckoutSessionOnTelehealth`, valueOnTelehealth)
+                            const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/Reservation/CheckoutSessionOnTelehealth`, valueOnTelehealth)
                             if (data.success === true) {
                                 toast.success(data.message);
                                 localStorage.setItem('valueOnTelehealth', JSON.stringify(valueOnTelehealth))

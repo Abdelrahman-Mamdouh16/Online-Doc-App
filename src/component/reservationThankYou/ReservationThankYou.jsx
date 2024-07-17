@@ -10,7 +10,7 @@ export default function ReservationThankYou() {
   console.log(valueOnTelehealth);
   const createReservation = async () => {
     try {
-      const { data } = await axios.post(`http://localhost:8080/Reservation/createReservationOnTelehealth`, valueOnTelehealth)
+      const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/Reservation/createReservationOnTelehealth`, valueOnTelehealth)
       console.log(data);
       if (data.success === true) {
         toast.success(data.message);
