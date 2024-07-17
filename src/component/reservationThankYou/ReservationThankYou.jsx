@@ -49,9 +49,11 @@ export default function ReservationThankYou() {
                 </div>
                 <div className="ReservationThankYou-text">
                   <p className='textMain'>Your reservation has been confirmed. You will receive an email confirmation shortly.</p>
-                  <Link to={'/'}>
-                    <button className='btn text-white px-5' style={{ backgroundColor: "#0070cd" }}> Back Home</button>
-                  </Link>
+                  {!localStorage.getItem('valueOnTelehealth') ?
+                    <Link to={'/'}>
+                      <button className='btn text-white px-5' style={{ backgroundColor: "#0070cd" }}> Back Home</button>
+                    </Link>:<h3 className='textMain'>Don't Touch any thing we will navigate You to Home</h3>
+                }
                 </div>
               </div>
             </div>
