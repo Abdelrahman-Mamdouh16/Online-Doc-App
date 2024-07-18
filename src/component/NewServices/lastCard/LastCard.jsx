@@ -20,7 +20,7 @@ export default function LastCard() {
                                     <div className="card-body">
                                         <h5 className="card-title">Teleconsultation</h5>
                                         <p className="card-text">Schedule a voice or video call with a specialized doctor.</p>
-                                        <Link to={'/doctors/DoctorsData/all-specialties/Egypt'} onClick={()=>bookCall()}>
+                                        <Link to={'/doctors/DoctorsDataOnTelehealth/all-specialties/Egypt'} onClick={()=>bookCall()}>
                                             <button className='btn btn-danger anchor'>Book a Call <i className="fa-solid fa-caret-right"></i></button>
                                         </Link>
                                     </div>
@@ -40,7 +40,7 @@ export default function LastCard() {
                                         <p className="card-text">Choose the specialty, and the doctor
                                             will visit you at home.</p>
 
-                                        <Link to={'/doctors/DoctorsData/all-specialties/Egypt'}>
+                                        <Link to={'/doctors/DoctorsDataOnSide/all-specialties/Egypt'}>
                                             <button className='btn btn-danger anchor'>Book a visit <i className="fa-solid fa-caret-right"></i></button>
                                         </Link>
                                     </div>
