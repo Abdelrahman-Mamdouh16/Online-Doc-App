@@ -17,7 +17,7 @@ export default function ChangePassword() {
     const SubmitHandling = async (values) => {
         console.log(values);
         try {
-            const { data } = await axios.patch(`https://online-doctor-app.onrender.com/user/userAccount/UpdatePass/${userId}`, values);
+            const { data } = await axios.patch(`https://node-js-server-onlinedoctor.vercel.app/user/userAccount/UpdatePass/${userId}`, values);
             console.log(data);
             if (data.success === true) {
                 toast.success('Registration Successfully')
