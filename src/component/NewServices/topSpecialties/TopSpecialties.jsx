@@ -62,7 +62,7 @@ export default function TopSpecialties() {
             <div className="container">
                 <div className='d-md-flex justify-content-between mb-4'>
                     <h1 className='p-0 m-0' style={{ color: 'rgb(102, 102, 102)', fontSize: '32px', fontWeight: '700' }}>Book from top specialties</h1>
-                    <Link to={`/doctors/DoctorsData/all-specialties/Egypt`} className='btn btn-danger mt-3 mt-md-0'>All Offers <i className="fa-solid fa-caret-right"></i></Link>
+                    <Link to={`/doctors/DoctorsDataOnSide/all-specialties/Egypt`} className='btn btn-danger mt-3 mt-md-0'>All Offers <i className="fa-solid fa-caret-right"></i></Link>
                 </div>
                 <div className='topSpecialtiesSlider mt-2'>
                     {SpecialtiesData.length === 0 && !isErrorSpecialties ? <SpinnerGrow />
