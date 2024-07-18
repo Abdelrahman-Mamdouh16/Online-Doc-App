@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom'
 import { toast } from 'react-hot-toast';
 
 export default function LastCard() {
-    const bookCall =()=> {
-        toast.error("this feature not available now.")
-    }
+    
     return (
         <section className='lastCard my-5'>
             <div className="container">
@@ -20,7 +18,7 @@ export default function LastCard() {
                                     <div className="card-body">
                                         <h5 className="card-title">Teleconsultation</h5>
                                         <p className="card-text">Schedule a voice or video call with a specialized doctor.</p>
-                                        <Link to={'/doctors/DoctorsDataOnTelehealth/all-specialties/Egypt'} onClick={()=>bookCall()}>
+                                        <Link to={'/doctors/DoctorsDataOnTelehealth/all-specialties/Egypt'}>
                                             <button className='btn btn-danger anchor'>Book a Call <i className="fa-solid fa-caret-right"></i></button>
                                         </Link>
                                     </div>

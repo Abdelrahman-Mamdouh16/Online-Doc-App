@@ -69,7 +69,7 @@ export default function TopSpecialties() {
                         : <>
                             {isErrorSpecialties ? <h3 className='text-center p-0 m-0'>{isErrorSpecialties}...!</h3> : <>
                                 <Slider {...settings} key={''}>
-                                    {SpecialtiesData?.map((ele, index) => <Link to={`/doctors/DoctorsData/${ele.name}/Egypt`} key={index} className='px-2 text-decoration-none'>
+                                    {SpecialtiesData?.map((ele, index) => <Link to={`/doctors/DoctorsDataOnSide/${ele.name}/Egypt`} key={index} className='px-2 text-decoration-none'>
                                         <div className="topSpecialtiesImg" key={ele._id}>
                                             <img src={ele.img} className='w-100 rounded-4 rounded-bottom-0' alt="" />
                                         </div>
