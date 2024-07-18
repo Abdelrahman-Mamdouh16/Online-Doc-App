@@ -40,7 +40,7 @@ export default function CreateReservationOnTelehealth() {
                                     </div>
                                     <div className="col-12 bgColorLite p-4 textMain my-3 ">
                                         <p className='m-0 fs-5 text-center'>{doctorDay} - <span className='text-capitalize'>{doctorTimeStart}</span> <span className='text-capitalize'>{doctorTimeEnd}</span> <span className='fw-bold'> On Telehealth Call</span> </p>
-                                        <p className='text-center'>for test payment you can use  visa card : 424242424242 <br /> and any data in other fields</p>
+                                        <p className='text-center'>for test payment you can use  visa card : 4242424242424242 <br /> and any data in other fields</p>
                                     </div>
                                 </div>
                             </div>
