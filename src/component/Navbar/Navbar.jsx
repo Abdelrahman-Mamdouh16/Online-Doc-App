@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import './Navbar.css'
 import { developerModeFun } from '../../Redux/Slices/developerMode.slice'
+import { FaRegCalendarAlt } from 'react-icons/fa'
 
 export default function Navbar() {
     const { isLogin } = useSelector((state) => state.userLoginData)
@@ -41,18 +42,18 @@ export default function Navbar() {
                                         <span className='text-white d-none d-lg-block'>|</span>
                                         <span className='text-white d-block d-lg-none mb-2'>____________</span>
                                         <li className="nav-item">
-                                            <Link className="nav-link text-white py-0 " to={""} onClick={() => Dispatch(developerModeFun())}>
+                                            <Link className="nav-link text-white py-0 " to={"/contactUs"}>
                                                 Contact Us
                                             </Link>
                                         </li>
-                                        {/* <span className='text-white d-none d-lg-block'>|</span>
+                                        <span className='text-white d-none d-lg-block'>|</span>
                                         <span className='text-white d-block d-lg-none mb-2'>____________</span>
 
                                         <li className="nav-item">
-                                            <Link className="nav-link text-white py-0 " to={""} onClick={() => Dispatch(developerModeFun())}>
-                                                عربي
+                                            <Link className="nav-link text-white py-0 d-flex align-items-center" to={"/Account/myAppointment"} >
+                                            <FaRegCalendarAlt/> <p className='d-inline m-0 ms-1 p-0'>My Appointment</p>
                                             </Link>
-                                        </li> */}
+                                        </li>
                                         <span className='text-white d-none d-lg-block'>|</span>
                                         <span className='text-white d-block d-lg-none mb-2'>____________</span>
 

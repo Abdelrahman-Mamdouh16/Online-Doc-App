@@ -4,7 +4,6 @@ import Layout from './component/layout/Layout'
 import Login from './component/Login/Login'
 import Register from './component/Register/Register'
 import { Toaster } from 'react-hot-toast'
-import Cart from './component/Cart/Cart';
 import Protect from './component/Protect/Protect'
 import LogOut from './component/logOut/LogOut'
 import Home from './component/Home/Home.jsx'
@@ -22,6 +21,7 @@ import DoctorsDataOnTelehealth from './component/doctorsDataOnTelehealth/Doctors
 import CreateReservationOnSide from './component/createReservationOnSide/CreateReservationOnSide.jsx'
 import CreateReservationOnTelehealth from './component/createReservationOnTelehealth/CreateReservationOnTelehealth.jsx'
 import CreateTelehealthCall from './component/createTelehealthCall/CreateTelehealthCall.jsx'
+import ContactUs from './component/contactUs/ContactUs.jsx'
 
 export default function App() {
   
@@ -41,7 +41,7 @@ export default function App() {
             { path: '/Account/getAppointment/:id', element: <Protect><GetAppointment /></Protect> },
           ]
         },
-        { path: '/cart', element: <Protect><Cart /></Protect> },
+        { path: '/contactUs', element: <Protect><ContactUs /></Protect> },
         { path: '/doctors/DoctorsDataOnSide/:specialization/:city/:area?/:docName?', element: <Protect><DoctorsDataOnSide /></Protect> },
         { path: '/doctors/DoctorsDataOnTelehealth/:specialization/:city', element: <Protect><DoctorsDataOnTelehealth /></Protect> },
         { path: '/reservationOnSide/create', element: <Protect><CreateReservationOnSide /></Protect> },

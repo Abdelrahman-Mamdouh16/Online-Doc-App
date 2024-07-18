@@ -7,7 +7,8 @@ import toast from 'react-hot-toast';
 export default function GetAppointment() {
   const { id } = useParams();
   const [reservationData, setReservationData] = useState();
-  const navigate=useNavigate()
+  const navigate=useNavigate();
+
   const GetAppointment = async () => {
     try {
       const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/Reservation/getAppointment/${id}`)
@@ -24,7 +25,8 @@ export default function GetAppointment() {
       console.log(error.message);
 
     }
-  }
+  };
+
   const deleteReservation = async (id) => {
     try {
       const { data } = await axios.delete(`https://node-js-server-onlinedoctor.vercel.app/Reservation/deleteReservation/${id}`)
@@ -40,11 +42,13 @@ export default function GetAppointment() {
     } catch (error) {
       console.log(error.message);
     }
-  }
+  };
+
   useEffect(() => {
     GetAppointment();
     // eslint-disable-next-line
   }, [id]);
+  
   return (
     <>
       {!reservationData ? <Loading /> :
@@ -86,9 +90,7 @@ export default function GetAppointment() {
               </table>
             </div>
             <div className='d-md-none d-block '>
-              
                 <div  className={reservationData.reservation.status === `deleted` ? `bg-danger-subtle px-3` : 'px-3'}>
-                  {/* <h5 className='m-0 text-center mt-3'>#{index + 1}</h5> */}
                   <div className=' p-2'>
                     <h6 className='m-0 me-2'>Doctor Name : </h6>
                     <p className='m-0 mt-2'>{reservationData?.doctorData?.name}</p>
@@ -108,11 +110,8 @@ export default function GetAppointment() {
                   {reservationData.reservation.status === 'deleted' ? "" :
                     <div className='d-flex align-items-center p-2'>
                       <h6 className='m-0 me-2'>Cancel : </h6>
-
                       <button className='btn btn-danger' onClick={() => deleteReservation(reservationData?.reservation?._id)}>delete</button>
-
-                    </div>
-                  }
+                    </div>}
                   <hr />
                 </div>
             </div>

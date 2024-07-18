@@ -6,7 +6,7 @@ import { toast } from 'react-hot-toast';
 import Loading from './../../loaders/SpinnerLoading/SpinnerLoading.jsx';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { setIsLogin, setLoading } from '../../../Redux/Slices/userLoginData.slice.js';
-
+// import {checkReservationOnside} from '../../../Context/appointmentApi.js'
 export default function UserDetails() {
     const [patientData, setPatientData] = useState('');
     const navigate = useNavigate();
@@ -55,6 +55,7 @@ export default function UserDetails() {
     const today = new Date();
     const currentYear = today.getFullYear();
 
+    
     const valueOnside = {
         doctorId: doctorData._id,
         userId: userId,
@@ -63,19 +64,9 @@ export default function UserDetails() {
         date: doctorDay.replace(/^\w+\s+/g, `${currentYear}/`),
         status: 'pending',
         where: `${doctorData.area} , ${doctorData.city}`
+    };
 
-    }
-    const valueOnTelehealth = {
-        doctorId: doctorData._id,
-        userId: userId,
-        timeStart: doctorTimeStart,
-        timeEnd: doctorTimeEnd,
-        date: doctorDay.replace(/^\w+\s+/g, `${currentYear}/`),
-        status: 'pending',
-        where: 'On Telehealth Call'
-    }
     const checkReservationOnside = async () => {
-        // console.log(paymentMethod);
         try {
             const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/Reservation/checkReservation`, valueOnside)
             console.log(data);
@@ -105,7 +96,17 @@ export default function UserDetails() {
             console.log(error.message);
             toast.error(error.message.split(" ").slice(0, 2).join(" "));
         }
-    }
+    };
+
+    const valueOnTelehealth = {
+        doctorId: doctorData._id,
+        userId: userId,
+        timeStart: doctorTimeStart,
+        timeEnd: doctorTimeEnd,
+        date: doctorDay.replace(/^\w+\s+/g, `${currentYear}/`),
+        status: 'pending',
+        where: 'On Telehealth Call'
+    };
     const checkReservationOnTelehealth = async () => {
         if (paymentMethod === undefined) {
             toast.error('Please choose any payment method')
@@ -144,7 +145,7 @@ export default function UserDetails() {
                 toast.error(error.message.split(" ").slice(0, 2).join(" "));
             }
         }
-    }
+    };
 
     const CancelFun = () => {
         navigate(-1)

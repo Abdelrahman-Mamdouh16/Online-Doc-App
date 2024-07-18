@@ -12,13 +12,14 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import UserTokenProvider from './Context/UserToken';
 import { store } from './Redux/Store.redux';
 import { Provider } from 'react-redux';
+// import AppointmentApiProvider from './Context/appointmentApi';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Provider store={store}>
         <UserTokenProvider>
-            <App />
+                <App />
         </UserTokenProvider>
     </Provider>
 );
