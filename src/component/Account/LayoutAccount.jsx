@@ -13,7 +13,7 @@ export default function LayoutAccount() {
         <>
             <div className='bgColorLite'>
                 <div className="container bgColorLite">
-                    <div className="row">
+                    <div className="row w-100 h-100">
                         <div className="col-lg-3">
                             <div className="right">
                                 <div className="LayoutAccount d-flex justify-content-center justify-content-md-center  bgColorLite">

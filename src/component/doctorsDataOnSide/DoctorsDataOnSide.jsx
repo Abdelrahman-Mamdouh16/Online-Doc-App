@@ -100,7 +100,7 @@ export default function DoctorsDataOnSide() {
             {searchMessage ? <p style={{ fontSize: '12px', color: 'rgb(116, 116, 112)' }}>{searchMessage}</p> : ''}
           </div>
           {searchMessage === 'doctors is not found' ? '' :
-            !searchData.length ? <SpinnerLoading />
+            !searchData.length ? <SpinnerLoading/>
               : searchData?.map((ele, index) => {
                 return <div className=' bg-white mb-2 rounded mx-md-5 styleDocCard' style={{ cursor: 'pointer' }} key={index}>
                   <div className='row'>

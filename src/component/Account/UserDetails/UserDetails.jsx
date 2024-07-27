@@ -5,31 +5,34 @@ import './UserDetails.css'
 import { toast } from 'react-hot-toast';
 import Loading from './../../loaders/SpinnerLoading/SpinnerLoading.jsx';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { setIsLogin, setLoading } from '../../../Redux/Slices/userLoginData.slice.js';
+import { setIsLogin } from '../../../Redux/Slices/userLoginData.slice.js';
 // import {checkReservationOnside} from '../../../Context/appointmentApi.js'
 export default function UserDetails() {
     const [patientData, setPatientData] = useState('');
+    const [loading, setLoading] = useState(null);
+
     const navigate = useNavigate();
     const location = useLocation();
     const pathName = location.pathname;
     const { userToken, userId } = useSelector((state) => state.userLoginData);
+
     const { doctorData, doctorTimeStart, doctorTimeEnd, doctorDay } = useSelector((state) => state.ReservationDocData);
-    const [paymentMethod, setPaymentMethod] = useState()
+
+    const [paymentMethod, setPaymentMethod] = useState();
+
     const handleRadioChange = (event) => {
         setPaymentMethod(event.target.value);
     };
-    // console.log(userToken, userId);
+
     let headers = { authorization: "Bearer " + userToken };
     const dispatch = useDispatch()
 
-    // dispatch(setLoading(true));
     const getUserData = async () => {
         try {
             const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/user/userDetails/${userId}`,
                 {}, { headers })
             // console.log(data);
             if (data.success === true) {
-                dispatch(setLoading(false));
                 setPatientData(data.result);
             }
             if (data.success === false) {
@@ -39,7 +42,6 @@ export default function UserDetails() {
                 navigate('/login')
             }
         } catch (error) {
-            // dispatch(setLoading(true));
             console.log(error.message);
             toast.error(error.message.split(" ").slice(0, 2).join(" "));
         }
@@ -55,7 +57,7 @@ export default function UserDetails() {
     const today = new Date();
     const currentYear = today.getFullYear();
 
-    
+
     const valueOnside = {
         doctorId: doctorData._id,
         userId: userId,
@@ -68,24 +70,33 @@ export default function UserDetails() {
 
     const checkReservationOnside = async () => {
         try {
+            setLoading(true)
             const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/Reservation/checkReservation`, valueOnside)
             console.log(data);
             if (data.success === true) {
+                setLoading(false)
                 toast.error(`${data.message} you must remove it or choose another one`);
             };
             if (data.success === false) {
                 // toast.success(data.message);
+                setLoading(true)
                 const createReservation = async () => {
                     try {
+                        setLoading(true)
                         const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/Reservation/create`, valueOnside)
                         console.log(data);
                         if (data.success === true) {
+                            setLoading(true)
+
                             toast.success(data.message);
                             navigate("/reservation/Thank-You");
                         };
-                        if (data.success === false)
+                        if (data.success === false) {
+                            setLoading(false)
                             toast.error(data.message);
+                        }
                     } catch (error) {
+                        setLoading(false)
                         console.log(error.message);
                         toast.error(error.message.split(" ").slice(0, 2).join(" "));
                     }
@@ -108,32 +119,41 @@ export default function UserDetails() {
         where: 'On Telehealth Call'
     };
     const checkReservationOnTelehealth = async () => {
+        setLoading(true)
         if (paymentMethod === undefined) {
+            setLoading(false)
             toast.error('Please choose any payment method')
         }
         else if (paymentMethod === 'Fawry') {
+            setLoading(false)
             toast.error('Fawry payment is not supported yet');
         }
         else if (paymentMethod === 'Visa Card') {
             try {
+                setLoading(true)
                 const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/Reservation/checkReservationOnTelehealth`, valueOnTelehealth)
                 console.log(data);
                 if (data.success === true) {
+                    setLoading(false)
                     toast.error(`${data.message} you must remove it or choose another one`);
                 };
                 if (data.success === false) {
+                    setLoading(true)
                     const CheckoutSessionOnTelehealth = async () => {
                         try {
                             const { data } = await axios.post(`https://node-js-server-onlinedoctor.vercel.app/Reservation/CheckoutSessionOnTelehealth`, valueOnTelehealth)
                             if (data.success === true) {
+                                setLoading(true)
                                 toast.success(data.message);
                                 localStorage.setItem('valueOnTelehealth', JSON.stringify(valueOnTelehealth))
                                 window.location.href = data.result.url
                             };
                             if (data.success === false) {
+                                setLoading(false)
                                 toast.error(data.message);
                             };
                         } catch (error) {
+                            setLoading(false)
                             console.log(error.message);
                             toast.error(error.message.split(" ").slice(0, 2).join(" "));
                         }
@@ -141,6 +161,7 @@ export default function UserDetails() {
                     CheckoutSessionOnTelehealth()
                 }
             } catch (error) {
+                setLoading(false)
                 console.log(error.message);
                 toast.error(error.message.split(" ").slice(0, 2).join(" "));
             }
@@ -219,12 +240,23 @@ export default function UserDetails() {
                                 </div>
                                 : ''}
                         </div>
+
                         {pathName === '/reservationOnSide/create' ? <div className='ps-3 my-3'>
-                            <button className='btn btn-danger me-3' style={{ paddingLeft: '80px', paddingRight: '80px' }} onClick={() => checkReservationOnside()}>Book</button>
+                            {loading ? <button class="btn btn-danger me-3" type="button" style={{ paddingLeft: '50px', paddingRight: '50px' }} >
+                                <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+                                <span role="status">Loading...</span>
+                            </button> :
+                                <button className='btn btn-danger me-3' style={{ paddingLeft: '80px', paddingRight: '80px' }} onClick={() => checkReservationOnside()}>Book</button>
+                            }
+
                             <button className='btn btn-outline-primary px-4' onClick={() => CancelFun()}>Cancel</button>
                         </div> : ''}
                         {pathName === '/reservationOnTelehealth/create' ? <div className='ps-3 my-3'>
-                            <button className='btn btn-danger me-3' style={{ paddingLeft: '80px', paddingRight: '80px' }} onClick={() => checkReservationOnTelehealth()}>Book</button>
+                            {loading ? <button class="btn btn-danger me-3" type="button" style={{ paddingLeft: '50px', paddingRight: '50px' }} >
+                                <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+                                <span role="status">Loading...</span>
+                            </button> :
+                                <button className='btn btn-danger me-3' style={{ paddingLeft: '80px', paddingRight: '80px' }} onClick={() => checkReservationOnTelehealth()}>Book</button>}
                             <button className='btn btn-outline-primary px-4' onClick={() => CancelFun()}>Cancel</button>
                         </div> : ''}
                     </div>

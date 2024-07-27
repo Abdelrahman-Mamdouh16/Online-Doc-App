@@ -1,11 +1,14 @@
 import { useFormik } from 'formik'
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { RotatingLines } from 'react-loader-spinner'
 export default function SearchInputsLeft() {
 
+    const [loading, setLoading] = useState(null);
     const navigate = useNavigate()
     async function searchLefHandling(value) {
         try {
+            setLoading(true)
             var path = `/doctors/DoctorsDataOnSide/${value.ChooseSpecialty}/${value.ChooseCity}`;
             if (value.ChooseArea) {
                 path += `/${value.ChooseArea}`;
@@ -13,12 +16,13 @@ export default function SearchInputsLeft() {
             if (value.DoctorName) {
                 path += `/${value.DoctorName}`;
             }
-            navigate(path)
+            navigate(path);
+            setLoading(false)
         } catch (error) {
             console.log(error);
         }
     }
-
+    // console.log(loading);
     const formikLef = useFormik({
         initialValues: {
             ChooseSpecialty: "all-specialties",
@@ -68,9 +72,18 @@ export default function SearchInputsLeft() {
                     <input type="text" className='w-100 placeholders' name='DoctorName' onChange={formikLef.handleChange} onBlur={formikLef.handleBlur} placeholder='Doctor name' style={{ border: '1px solid #dee2e6', padding: '11px', color: '#0070cd', textOverflow: 'ellipsis' }} />
                 </div>
                 <div className="col-md-2 p-0">
-                    <button className='btn text-white searchBtn btn-lg w-100' style={{ backgroundColor: 'red' }} type='submit'>
-                        <span className='me-2'><i className="fa-solid fa-magnifying-glass fa-flip-horizontal" /></span>Search
-                    </button>
+                    {loading ?
+                        <button class="btn text-white searchBtn btn-lg w-100" type="button" disabled style={{ backgroundColor: 'red' }}>
+                            <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+                            <span role="status">Loading...</span>
+                        </button> 
+                        :
+                        <button className='btn text-white searchBtn btn-lg w-100' style={{ backgroundColor: 'red' }} type='submit'>
+                            <span className='me-2'>
+                                <i className="fa-solid fa-magnifying-glass fa-flip-horizontal" />
+                            </span>Search
+                        </button>
+                    }
                 </div>
             </div>
         </form>

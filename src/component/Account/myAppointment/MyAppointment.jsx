@@ -44,7 +44,7 @@ export default function MyAppointment() {
         <>
             {
                 reservationMessage === "Not found Reservation" ? <h5 className='mt-4 bg-white py-3 text-center rounded-3 textMain'>You don't have any Appointment</h5> :
-                    !reservationData.length ? <Loading /> :
+                    !reservationData.length ? <Loading margin={'my-5'}/>:
                         <div className="MyAppointment d-flex bgColorLite my-4" >
                             <div className="MyAppointmentForm bg-white rounded-3 w-100">
                                 <div className="TopText topTextBgColor py-2">
